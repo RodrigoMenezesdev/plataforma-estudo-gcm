@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo Interativo - Guarda Municipal de Maricá</title>
+    <!-- Importação do CSS externo -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontes e ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="app-header">
+        <div class="logo-area">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h1>GCM Maricá - Plataforma de Estudos</h1>
+        </div>
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-target="simulado-section"><i class="fa-solid fa-pen-to-square"></i>
+                Simulado (50Q)</button>
+            <button class="tab-btn" data-target="flashcards-section"><i class="fa-solid fa-clone"></i>
+                Flashcards</button>
+            <button class="tab-btn" data-target="resumos-section"><i class="fa-solid fa-book-open"></i> Resumos &
+                Bizus</button>
+            <button class="tab-btn" data-target="stats-section"><i class="fa-solid fa-chart-pie"></i>
+                Desempenho</button>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="app-container">
+
+        <!-- Seção: Simulado -->
+        <section id="simulado-section" class="content-section active">
+            <div class="simulado-top-bar">
+                <h2>Simulado Oficial COSEAC</h2>
+                <div id="timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 04:00:00</div>
+            </div>
+
+            <div id="simulado-intro" class="card">
+                <p>Simulado completo baseado no padrão da banca COSEAC/UFF (2019): 10 questões de Português, 10 de
+                    Raciocínio Lógico/Informática e 30 de Conhecimentos Específicos.</p>
+                <button id="start-simulado-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar
+                    Prova</button>
+            </div>
+
+            <div id="simulado-quiz-area" class="hidden">
+                <div class="quiz-layout">
+                    <div class="question-card card">
+                        <div class="q-meta">
+                            <span id="q-subject-badge" class="badge">Disciplina</span>
+                            <span id="q-number">Questão 1 de 50</span>
+                        </div>
+                        <h3 id="q-text">Enunciado da questão aparecerá aqui...</h3>
+                        <div id="options-container" class="options-list">
+                            <!-- Opções geradas via JS -->
+                        </div>
+                        <div class="quiz-nav-buttons">
+                            <button id="prev-q-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                                Anterior</button>
+                            <button id="next-q-btn" class="btn primary-btn">Próxima <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-sidebar card">
+                        <h4>Gabarito de Questões</h4>
+                        <div id="question-grid" class="q-grid">
+                            <!-- Grade de 1 a 50 gerada via JS -->
+                        </div>
+                        <button id="finish-simulado-btn" class="btn danger-btn"><i
+                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="simulado-result-area" class="hidden card text-center">
+                <h2>Resultado do Simulado</h2>
+                <div id="score-display" class="score-badge">0 / 50</div>
+                <p id="score-feedback">Parabéns por concluir!</p>
+                <button id="restart-simulado-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i>
+                    Refazer Simulado</button>
+            </div>
+        </section>
+
+        <!-- Seção: Flashcards -->
+        <section id="flashcards-section" class="content-section">
+            <h2>Flashcards de Memorização Ativa</h2>
+            <div class="flashcard-container">
+                <div id="flashcard" class="flashcard card">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <span id="fc-category" class="badge">Estatuto das Guardas</span>
+                            <h3 id="fc-question">Qual é o princípio mínimo de atuação da Guarda Municipal conforme a Lei
+                                13.022/14?</h3>
+                            <span class="flip-hint"><i class="fa-solid fa-rotate"></i> Clique para virar o cartão</span>
+                        </div>
+                        <div class="flashcard-back">
+                            <h3>Resposta:</h3>
+                            <p id="fc-answer">I - Proteção dos direitos humanos fundamentais... II - Preservação da
+                                vida, redução do sofrimento e diminuição das perdas...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard-controls">
+                    <button id="fc-prev" class="btn secondary-btn"><i class="fa-solid fa-chevron-left"></i>
+                        Anterior</button>
+                    <button id="fc-flip" class="btn primary-btn"><i class="fa-solid fa-repeat"></i> Virar
+                        Cartão</button>
+                    <button id="fc-next" class="btn secondary-btn">Próximo <i
+                            class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Resumos & Bizus -->
+        <section id="resumos-section" class="content-section">
+            <h2>Resumos Teóricos & Bizus (COSEAC)</h2>
+            <div class="resumos-grid">
+                <div class="card resumo-card">
+                    <h3><i class="fa-solid fa-scale-balanced"></i> Lei 13.022/14 (Estatuto)</h3>
+                    <p>Foco nos artigos de competências municipais (Art. 5) e uso progressivo da força. A COSEAC costuma
+                        cobrar distinção entre atribuições da Guarda e da Polícia Militar.</p>
+                </div>
+                <div class="card resumo-card">
+                    <h3><i class="fa-solid fa-building-columns"></i> Art. 144 da Constituição</h3>
+                    <p>A segurança pública é dever do Estado... § 8º Os Municípios poderão constituir guardas municipais
+                        destinadas à proteção de seus bens, serviços e instalações.</p>
+                </div>
+                <div class="card resumo-card">
+                    <h3><i class="fa-solid fa-handcuffs"></i> Direito Penal & CTB</h3>
+                    <p>Atenção aos crimes contra a administração pública, crime de ameaça e omissão de socorro no Código
+                        de Trânsito Brasileiro aplicados à atuação urbana.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Estatísticas -->
+        <section id="stats-section" class="content-section">
+            <h2>Seu Progresso e Estatísticas</h2>
+            <div class="stats-grid">
+                <div class="card stat-card">
+                    <h3>Simulados Realizados</h3>
+                    <p id="stat-total-simulados" class="stat-number">0</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>Média de Acertos</h3>
+                    <p id="stat-media-acertos" class="stat-number">0%</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>Flashcards Vistos</h3>
+                    <p id="stat-flashcards" class="stat-number">0</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Importação do JS externo -->
+    <script src="script.js"></script>
+</body>
+
+</html>
