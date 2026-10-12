@@ -28,6 +28,10 @@
                 Bizus</button>
             <button class="tab-btn" data-target="stats-section"><i class="fa-solid fa-chart-pie"></i>
                 Desempenho</button>
+            <button class="tab-btn" data-target="super-simulado-section"><i class="fa-solid fa-list-check"></i>
+                Super Simulado (100Q)</button>
+            <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas
+                Anteriores</button>
         </nav>
     </header>
 
@@ -117,29 +121,82 @@
             </div>
         </section>
 
-        <!-- Seção: Resumos & Bizus -->
+        <!-- Seção: Resumos Teóricos & Bizus -->
         <section id="resumos-section" class="content-section">
-            <h2>Resumos Teóricos & Bizus (COSEAC)</h2>
-            <div class="resumos-grid">
-                <div class="card resumo-card">
-                    <h3><i class="fa-solid fa-scale-balanced"></i> Lei 13.022/14 (Estatuto)</h3>
-                    <p>Foco nos artigos de competências municipais (Art. 5) e uso progressivo da força. A COSEAC costuma
-                        cobrar distinção entre atribuições da Guarda e da Polícia Militar.</p>
+            <h2>Resumos Teóricos & Bizus Estratégicos (COSEAC)</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Pontos de atenção e macetes de memorização
+                focados no edital da Guarda Municipal de Maricá:</p>
+
+            <div class="materias-grid">
+                <!-- Card 1: Estatuto -->
+                <div class="card" style="padding: 1.5rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                        <span class="badge" style="background-color: #e3f2fd; color: #1565c0;"><i
+                                class="fa-solid fa-star"></i> Alto Rendimento</span>
+                        <small style="color: var(--text-muted);">Lei 13.022/14</small>
+                    </div>
+                    <h3><i class="fa-solid fa-scale-balanced" style="color: #1565c0;"></i> Estatuto das Guardas</h3>
+                    <p style="margin: 0.8rem 0; font-size: 0.95rem;">
+                        <strong>Artigo Chave (Art. 3º):</strong> Princípios Mínimos (Proteção dos Direitos Humanos,
+                        Preservação da vida, Uso progressivo da força).
+                    </p>
+                    <ul
+                        style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+                        <li><strong>Natureza:</strong> Instituição civil, uniformizada e armada.</li>
+                        <li><strong>Controle:</strong> Interno (Corregedoria) e Externo (Ouvidoria).</li>
+                        <li><strong>Vedações:</strong> Proibida subordinação a comandos militares.</li>
+                    </ul>
                 </div>
-                <div class="card resumo-card">
-                    <h3><i class="fa-solid fa-building-columns"></i> Art. 144 da Constituição</h3>
-                    <p>A segurança pública é dever do Estado... § 8º Os Municípios poderão constituir guardas municipais
-                        destinadas à proteção de seus bens, serviços e instalações.</p>
+
+                <!-- Card 2: Constituição -->
+                <div class="card" style="padding: 1.5rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                        <span class="badge" style="background-color: #fff3e0; color: #e65100;"><i
+                                class="fa-solid fa-fire"></i> Cai Sempre</span>
+                        <small style="color: var(--text-muted);">CF/88 Art. 144</small>
+                    </div>
+                    <h3><i class="fa-solid fa-landmark" style="color: #e65100;"></i> Artigo 144 - Segurança Pública</h3>
+                    <p style="margin: 0.8rem 0; font-size: 0.95rem;">
+                        <strong>Artigo Chave (§ 8º):</strong> Os Municípios poderão constituir guardas municipais para
+                        proteção de seus <em>bens, serviços e instalações</em>.
+                    </p>
+                    <ul
+                        style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+                        <li><strong>Inviolabilidade do Domicílio:</strong> Flagrante, desastre, socorro ou ordem
+                            judicial (dia).</li>
+                        <li><strong>Remédios:</strong> Habeas Corpus (Locomoção) e Habeas Data (Informação pessoal).
+                        </li>
+                    </ul>
                 </div>
-                <div class="card resumo-card">
-                    <h3><i class="fa-solid fa-handcuffs"></i> Direito Penal & CTB</h3>
-                    <p>Atenção aos crimes contra a administração pública, crime de ameaça e omissão de socorro no Código
-                        de Trânsito Brasileiro aplicados à atuação urbana.</p>
-                </div>
+
+                <!-- Card 3: Penal & CTB -->
+                <div class="card" style="padding: 1.5rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                        <span class="badge" style="background-color: #e8f5e9; color: #2e7d32;"><i
+                                class="fa-solid fa-gavel"></i> Bizu Prático</span>
+                        <small style="color: var(--text-muted);">CP & CTB</small>
+                    </div>
+                    <h3><i class="fa-solid fa-handcuffs" style="color: #2e7d32;"></i> Direito Penal & Trânsito</h3>
+                    <p style="margin: 0.8rem 0; font-size: 0.95rem;">
+                        Diferencie os crimes funcionais mais cobrados em provas da Guarda:
+                    </p>
+                    <ul
+                        style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+                        <li><strong>Concussão (Art. 316):</strong> <em>EXIGIR</em> vantagem indevida.</li>
+                        <li><strong>Corrupção Passiva (Art. 317):</strong> <em>SOLICITAR</em> ou <em>RECEBER</em>
+                            vantagem.</li>
+                        <li><strong>Prevaricação (Art. 319):</strong> Retardar/deixar de agir por <em>INTERESSE
+                                PESSOAL</em>.</li>
+                        <li><strong>CTB Art. 304:</strong> Omissão de socorro no trânsito (Crime).</li>
+                    </ul>
+            </div>
             </div>
         </section>
 
-        <!-- Seção: Estatísticas -->
+        <!-- Seção: Estatísticas / Desempenho -->
         <section id="stats-section" class="content-section">
             <h2>Seu Progresso e Estatísticas</h2>
             <div class="stats-grid">
@@ -156,11 +213,118 @@
                     <p id="stat-flashcards" class="stat-number">0</p>
                 </div>
             </div>
+
+            <!-- Botão para Zerar Estatísticas -->
+            <div class="text-center" style="margin-top: 2rem;">
+                <button id="reset-stats-btn" class="btn danger-btn">
+                    <i class="fa-solid fa-trash"></i> Zerar Estatísticas
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção: Super Simulado por Matéria -->
+        <section id="super-simulado-section" class="content-section">
+            <h2>Super Simulado por Matéria</h2>
+            <div id="super-menu" class="card text-center">
+                <p>Escolha a disciplina desejada para iniciar o treino focado:</p>
+                <div class="materias-grid">
+                    <button class="btn primary-btn materia-filter-btn" data-materia="Constitucional">Direito
+                        Constitucional</button>
+                    <button class="btn primary-btn materia-filter-btn" data-materia="Administrativo">Direito
+                        Administrativo</button>
+                    <button class="btn primary-btn materia-filter-btn" data-materia="LegislacaoGCM">Legislação da Guarda
+                        Municipal</button>
+                    <button class="btn primary-btn materia-filter-btn" data-materia="PenalEspecial">Direito Penal,
+                        Processual Penal e Especial</button>
+                    <button class="btn primary-btn materia-filter-btn" data-materia="DireitosHumanos">Direitos Humanos e
+                        Legislação Social</button>
+                    <button class="btn secondary-btn materia-filter-btn" data-materia="Todas">Simulado Geral (Todas as
+                        Matérias)</button>
+                    <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas
+                        Anteriores</button>
+                </div>
+            </div>
+
+            <div id="super-quiz-area" class="hidden">
+                <div class="simulado-top-bar">
+                    <h3 id="super-titulo-materia">Filtro Ativo</h3>
+                    <button id="voltar-menu-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                        Escolher Outra Matéria</button>
+                </div>
+                <div class="quiz-layout">
+                    <div class="question-card card">
+                        <div class="q-meta">
+                            <span id="super-q-subject" class="badge">Disciplina</span>
+                            <span id="super-q-number">Questão 1</span>
+                        </div>
+                        <h3 id="super-q-text">Enunciado...</h3>
+                        <div id="super-options-container" class="options-list"></div>
+                        <div class="quiz-nav-buttons">
+                            <button id="super-prev-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                                Anterior</button>
+                            <button id="super-next-btn" class="btn primary-btn">Próxima <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="quiz-sidebar card">
+                        <h4>Questões da Matéria</h4>
+                        <div id="super-question-grid" class="q-grid"></div>
+                        <button id="super-finish-btn" class="btn danger-btn"><i class="fa-solid fa-flag-checkered"></i>
+                            Finalizar Bloco</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="super-result-area" class="hidden card text-center">
+                <h2>Resultado do Bloco</h2>
+                <div id="super-score-display" class="score-badge">0 / 0</div>
+                <p id="super-score-feedback">Bom trabalho!</p>
+                <button id="super-restart-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Escolher
+                    Outra Matéria</button>
+            </div>
+        </section>
+
+        <!-- Seção: Provas Anteriores e Gabaritos -->
+        <section id="provas-section" class="content-section">
+            <h2>Provas Anteriores e Gabaritos (COSEAC/UFF)</h2>
+            <p>Acesse o caderno oficial e o gabarito do concurso anterior para reforçar o seu treinamento prático:</p>
+
+            <div class="materias-grid" style="margin-top: 1.5rem;">
+                <!-- Card Prova -->
+                <div class="card text-center" style="padding: 1.5rem;">
+                    <i class="fa-solid fa-file-pdf"
+                        style="font-size: 2.5rem; color: #d32f2f; margin-bottom: 0.8rem;"></i>
+                    <h3>Caderno de Prova (2019)</h3>
+                    <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        Prova oficial aplicada pela COSEAC/UFF com 50 questões objetivas[cite: 11].
+                    </p>
+                    <a href="guarda.pdf" target="_blank" class="btn primary-btn"
+                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
+                        <i class="fa-solid fa-eye"></i> Abrir Prova em PDF
+                    </a>
+                </div>
+
+                <!-- Card Gabarito -->
+                <div class="card text-center" style="padding: 1.5rem;">
+                    <i class="fa-solid fa-file-circle-check"
+                        style="font-size: 2.5rem; color: #2e7d32; margin-bottom: 0.8rem;"></i>
+                    <h3>Gabarito Oficial (2019)</h3>
+                    <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        Gabarito oficial preliminar de respostas para conferência[cite: 10].
+                    </p>
+                    <a href="gab_prel.pdf" target="_blank" class="btn primary-btn"
+                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
+                        <i class="fa-solid fa-square-check"></i> Abrir Gabarito em PDF
+                    </a>
+                </div>
+            </div>
         </section>
 
     </main>
 
     <!-- Importação do JS externo -->
+
+
     <script src="script.js"></script>
 </body>
 
