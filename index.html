@@ -38,6 +38,11 @@
                 Super Simulado (100Q)</button>
             <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas
                 Anteriores</button>
+            <button class="tab-btn" data-target="rlm-section">
+                <i class="fa-solid fa-calculator"></i> Simulado RLM (50Q)
+            </button>
+            <button class="tab-btn" data-target="info-section"><i class="fa-solid fa-desktop"></i>
+                Simulado Informática (100Q)</button>
         </nav>
     </header>
 
@@ -56,6 +61,27 @@
                     Raciocínio Lógico/Informática e 30 de Conhecimentos Específicos.</p>
                 <button id="start-simulado-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar
                     Prova</button>
+            </div>
+
+            <!-- Card de Dicas e Foco na Prova -->
+            <div class="card study-tips-card" style="border-left: 5px solid #2b6cb0; margin-top: 20px;">
+                <h3 style="color: #1a365d; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-bullseye" style="color: #d69e2e;"></i> Foco na Prova: O que mais cai
+                    (COSEAC/UFF)
+                </h3>
+                <p style="color: #4a5568; font-size: 14px; line-height: 1.5; margin-bottom: 15px;">
+                    O concurso cobra conteúdos densos divididos em blocos essenciais. Priorize a revisão diária nestes
+                    tópicos baseados no edital oficial:
+                </p>
+                <ul style="color: #2d3748; font-size: 14px; padding-left: 20px; line-height: 1.6;">
+                    <li><strong>Língua Portuguesa:</strong> Interpretação de textos, coesão, sintaxe e regência.</li>
+                    <li><strong>Raciocínio Lógico & Informática:</strong> Sequências lógicas, Excel/Word, Windows/Linux
+                        e Noções de Segurança da Informação.</li>
+                    <li><strong>Direito Constitucional & Administrativo:</strong> Art. 5º da CF/88, Atos
+                        Administrativos, Poderes da Administração e Licitações.</li>
+                    <li><strong>Legislação Específica & Direitos Humanos:</strong> Estatuto Geral das Guardas Municipais
+                        (Lei 13.022/2014), Estatuto da Criança e do Adolescente (ECA) e Leis Penais Especiais.</li>
+                </ul>
             </div>
 
             <div id="simulado-quiz-area" class="hidden">
@@ -326,11 +352,129 @@
             </div>
         </section>
 
+        <!-- Seção: Simulado RLM -->
+        <section id="rlm-section" class="content-section">
+            <div class="simulado-top-bar">
+                <h2>Simulado Raciocínio Lógico (50Q) - COSEAC</h2>
+                <div id="rlm-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 03:00:00</div>
+            </div>
+
+            <div id="rlm-intro" class="card">
+                <p>Simulado exclusivo de <strong>Raciocínio Lógico</strong> focado no edital COSEAC/UFF para Guarda
+                    Municipal. Teste seu conhecimento em sequências, conjuntos, proporções e probabilidades.</p>
+                <button id="start-rlm-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                    RLM</button>
+            </div>
+
+            <!-- Área do Quiz de RLM (Oculta inicialmente) -->
+            <div id="rlm-quiz-area" class="hidden">
+                <div class="quiz-layout">
+                    <div class="question-card card">
+                        <div class="q-meta">
+                            <span id="rlm-subject-badge" class="badge">Raciocínio Lógico</span>
+                            <span id="rlm-q-number">Questão 1 de 20</span>
+                        </div>
+                        <h3 id="rlm-q-text">Enunciado da questão aparecerá aqui...</h3>
+                        <div id="rlm-options-container" class="options-list">
+                            <!-- Opções geradas via JS -->
+                        </div>
+                        <div class="quiz-nav-buttons">
+                            <button id="rlm-prev-q-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                                Anterior</button>
+                            <button id="rlm-next-q-btn" class="btn primary-btn">Próxima <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-sidebar card">
+                        <h4>Gabarito RLM</h4>
+                        <div id="rlm-question-grid" class="q-grid">
+                            <!-- Grade de questões gerada via JS -->
+                        </div>
+                        <button id="rlm-finish-btn" class="btn danger-btn"><i class="fa-solid fa-flag-checkered"></i>
+                            Finalizar Prova</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de Resultado do RLM (Oculta inicialmente) -->
+            <div id="rlm-result-area" class="hidden card text-center">
+                <h2>Resultado do Simulado RLM</h2>
+                <div id="rlm-score-display" class="score-badge">0 / 20</div>
+                <p id="rlm-score-feedback">Bom trabalho! Continue praticando para gabaritar a COSEAC.</p>
+                <button id="rlm-restart-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Refazer
+                    Simulado RLM</button>
+            </div>
+        </section>
+
+        <!-- Secção: Simulado Informática (100Q) -->
+        <section id="info-section" class="content-section hidden">
+            <div class="simulado-top-bar">
+                <h2>Simulado Informática (100Q) - COSEAC</h2>
+                <div id="info-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 04:00:00</div>
+            </div>
+
+            <!-- Introdução -->
+            <div id="info-intro" class="card">
+                <p>Simulado exclusivo de <strong>Noções de Informática</strong> focado no edital COSEAC/UFF para Guarda
+                    Municipal. Teste seu conhecimento com 100 questões abrangendo Windows, Pacote Office, Redes e
+                    Segurança da Informação.</p>
+                <button id="start-info-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                    Informática</button>
+            </div>
+
+            <!-- Área do Quiz (Oculta inicialmente) -->
+            <div id="info-quiz-area" class="hidden">
+                <div class="quiz-layout">
+                    <div class="question-card card">
+                        <div class="q-meta">
+                            <span id="info-subject-badge" class="badge">Informática</span>
+                            <span id="info-q-number">Questão 1 de 100</span>
+                        </div>
+                        <h3 id="info-q-text">Enunciado da questão aparecerá aqui...</h3>
+                        <div id="info-options-container" class="options-list">
+                            <!-- Opções geradas via JS -->
+                        </div>
+                        <div class="quiz-nav-buttons">
+                            <button id="info-exit-btn" class="btn danger-btn"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
+                            <div>
+                                <button id="info-prev-q-btn" class="btn secondary-btn"><i
+                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
+                                <button id="info-next-q-btn" class="btn primary-btn">Próxima <i
+                                        class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gabarito Lateral de Informática -->
+                    <div class="gabarito-card card">
+                        <h4>Gabarito Informática</h4>
+                        <div id="info-question-grid" class="q-grid">
+                            <!-- Caixas geradas via JS -->
+                        </div>
+                        <button id="info-finish-btn" class="btn danger-btn full-width"><i
+                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de Resultado -->
+            <div id="info-result-area" class="hidden card text-center">
+                <h3>Resultado do Simulado de Informática</h3>
+                <p>Você concluiu o simulado!</p>
+                <div class="score-display" id="info-score-display">0 / 100</div>
+                <button id="info-restart-btn" class="btn primary-btn">Tentar Novamente</button>
+            </div>
+        </section>
+
     </main>
 
     <!-- Importação do JS externo -->
 
-
+    <!-- Scripts dos Simulados -->
+    <script src="rlm-50q.js"></script>
+    <script src="info-100q.js"></script>
     <script src="script.js"></script>
 </body>
 

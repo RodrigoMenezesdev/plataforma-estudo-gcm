@@ -421,12 +421,25 @@ let currentFlashcardIndex = 0;
 // NAVEGAÇÃO DE ABAS
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+        // Remove a classe active de todos os botões
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
 
+        // Esconde todas as secções adicionando 'hidden' e removendo 'active'
+        document.querySelectorAll('.content-section').forEach(s => {
+            s.classList.remove('active');
+            s.classList.add('hidden');
+        });
+
+        // Ativa o botão clicado
         btn.classList.add('active');
+
+        // Mostra a secção alvo removendo o 'hidden' e adicionando 'active'
         const targetId = btn.getAttribute('data-target');
-        document.getElementById(targetId).classList.add('active');
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.classList.remove('hidden');
+            targetSection.classList.add('active');
+        }
     });
 });
 
@@ -914,5 +927,340 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js')
             .then(reg => console.log('PWA Service Worker registrado com sucesso!'))
             .catch(err => console.log('Erro ao registrar Service Worker:', err));
+    });
+}
+
+// --- Motor do Simulado RLM ---
+let rlmCurrentIndex = 0;
+let rlmUserAnswers = new Array(rlmQuestions.length).fill(null);
+
+const startRlmBtn = document.getElementById('start-rlm-btn');
+const rlmIntro = document.getElementById('rlm-intro');
+const rlmQuizArea = document.getElementById('rlm-quiz-area');
+const rlmResultArea = document.getElementById('rlm-result-area');
+
+if (startRlmBtn) {
+    startRlmBtn.addEventListener('click', () => {
+        rlmIntro.classList.add('hidden');
+        rlmQuizArea.classList.remove('hidden');
+        rlmCurrentIndex = 0;
+        rlmUserAnswers = new Array(rlmQuestions.length).fill(null);
+        loadRlmQuestion(rlmCurrentIndex);
+        buildRlmGrid();
+        startRlmTimer();
+    });
+}
+
+function loadRlmQuestion(index) {
+    const q = rlmQuestions[index];
+    document.getElementById('rlm-q-number').innerText = `Questão ${index + 1} de ${rlmQuestions.length}`;
+    document.getElementById('rlm-q-text').innerText = q.question;
+
+    const optionsContainer = document.getElementById('rlm-options-container');
+    optionsContainer.innerHTML = '';
+
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.classList.add('option-btn');
+        if (rlmUserAnswers[index] === i) {
+            btn.classList.add('selected');
+        }
+        btn.innerHTML = `<strong>${String.fromCharCode(65 + i)})</strong> ${opt}`;
+        btn.addEventListener('click', () => {
+            rlmUserAnswers[index] = i;
+            highlightRlmOption(i);
+            updateRlmGridItem(index);
+        });
+        optionsContainer.appendChild(btn);
+    });
+}
+
+function highlightRlmOption(selectedIndex) {
+    const buttons = document.querySelectorAll('#rlm-options-container .option-btn');
+    buttons.forEach((btn, i) => {
+        if (i === selectedIndex) {
+            btn.classList.add('selected');
+        } else {
+            btn.classList.remove('selected');
+        }
+    });
+}
+
+function buildRlmGrid() {
+    const grid = document.getElementById('rlm-question-grid');
+    grid.innerHTML = '';
+    rlmQuestions.forEach((_, i) => {
+        const box = document.createElement('div');
+        box.classList.add('q-box');
+        box.innerText = i + 1;
+        if (rlmUserAnswers[i] !== null) box.classList.add('answered');
+        box.addEventListener('click', () => {
+            rlmCurrentIndex = i;
+            loadRlmQuestion(rlmCurrentIndex);
+        });
+        grid.appendChild(box);
+    });
+}
+
+function updateRlmGridItem(index) {
+    const boxes = document.querySelectorAll('#rlm-question-grid .q-box');
+    if (boxes[index]) {
+        if (rlmUserAnswers[index] !== null) {
+            boxes[index].classList.add('answered');
+        } else {
+            boxes[index].classList.remove('answered');
+        }
+    }
+}
+
+document.getElementById('rlm-next-q-btn').addEventListener('click', () => {
+    if (rlmCurrentIndex < rlmQuestions.length - 1) {
+        rlmCurrentIndex++;
+        loadRlmQuestion(rlmCurrentIndex);
+    }
+});
+
+document.getElementById('rlm-prev-q-btn').addEventListener('click', () => {
+    if (rlmCurrentIndex > 0) {
+        rlmCurrentIndex--;
+        loadRlmQuestion(rlmCurrentIndex);
+    }
+});
+
+document.getElementById('rlm-finish-btn').addEventListener('click', () => {
+    let score = 0;
+    rlmQuestions.forEach((q, i) => {
+        if (rlmUserAnswers[i] === q.answer) score++;
+    });
+
+    rlmQuizArea.classList.add('hidden');
+    rlmResultArea.classList.remove('hidden');
+    document.getElementById('rlm-score-display').innerText = `${score} / ${rlmQuestions.length}`;
+});
+
+document.getElementById('rlm-restart-btn').addEventListener('click', () => {
+    rlmResultArea.classList.add('hidden');
+    rlmIntro.classList.remove('hidden');
+});
+
+// --- Cronômetro do Simulado RLM ---
+let rlmTimerInterval;
+let rlmTotalSeconds = 3 * 60 * 60; // 3 horas em segundos
+
+function startRlmTimer() {
+    clearInterval(rlmTimerInterval);
+    rlmTotalSeconds = 3 * 60 * 60; // Reseta para 3 horas
+    const timerDisplay = document.getElementById('rlm-timer');
+
+    if (!timerDisplay) return;
+
+    rlmTimerInterval = setInterval(() => {
+        if (rlmTotalSeconds <= 0) {
+            clearInterval(rlmTimerInterval);
+            alert("O tempo do simulado esgotou!");
+            document.getElementById('rlm-finish-btn').click();
+            return;
+        }
+
+        rlmTotalSeconds--;
+        const hours = Math.floor(rlmTotalSeconds / 3600);
+        const minutes = Math.floor((rlmTotalSeconds % 3600) / 60);
+        const seconds = rlmTotalSeconds % 60;
+
+        timerDisplay.innerHTML = `<i class="fa-solid fa-clock"></i> ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+}
+
+// ==========================================
+// MOTOR DO SIMULADO DE INFORMÁTICA (100Q)
+// ==========================================
+
+let infoCurrentIndex = 0;
+let infoUserAnswers = new Array(infoQuestions.length).fill(null);
+let infoTimerInterval;
+let infoTotalSeconds = 4 * 60 * 60; // 4 horas para 100 questões
+
+const startInfoBtn = document.getElementById('start-info-btn');
+const infoIntro = document.getElementById('info-intro');
+const infoQuizArea = document.getElementById('info-quiz-area');
+const infoResultArea = document.getElementById('info-result-area');
+const infoQuestionGrid = document.getElementById('info-question-grid');
+const infoQNumber = document.getElementById('info-q-number');
+const infoQText = document.getElementById('info-q-text');
+const infoOptionsContainer = document.getElementById('info-options-container');
+const infoPrevBtn = document.getElementById('info-prev-q-btn');
+const infoNextBtn = document.getElementById('info-next-q-btn');
+const infoFinishBtn = document.getElementById('info-finish-btn');
+const infoRestartBtn = document.getElementById('info-restart-btn');
+const infoExitBtn = document.getElementById('info-exit-btn');
+
+// Iniciar Simulado de Informática
+if (startInfoBtn) {
+    startInfoBtn.addEventListener('click', () => {
+        infoIntro.classList.add('hidden');
+        infoQuizArea.classList.remove('hidden');
+        infoCurrentIndex = 0;
+        infoUserAnswers = new Array(infoQuestions.length).fill(null);
+        loadInfoQuestion(infoCurrentIndex);
+        buildInfoGrid();
+        startInfoTimer();
+    });
+}
+
+// Cronômetro de Informática (4 horas)
+function startInfoTimer() {
+    clearInterval(infoTimerInterval);
+    infoTotalSeconds = 4 * 60 * 60;
+    const timerDisplay = document.getElementById('info-timer');
+
+    if (!timerDisplay) return;
+
+    infoTimerInterval = setInterval(() => {
+        if (infoTotalSeconds <= 0) {
+            clearInterval(infoTimerInterval);
+            alert("O tempo do simulado de informática esgotou!");
+            finishInfoExam();
+            return;
+        }
+
+        infoTotalSeconds--;
+        const hours = Math.floor(infoTotalSeconds / 3600);
+        const minutes = Math.floor((infoTotalSeconds % 3600) / 60);
+        const seconds = infoTotalSeconds % 60;
+
+        timerDisplay.innerHTML = `<i class="fa-solid fa-clock"></i> ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+}
+
+// Carregar Questão
+function loadInfoQuestion(index) {
+    const q = infoQuestions[index];
+    infoQNumber.textContent = `Questão ${index + 1} de ${infoQuestions.length}`;
+    infoQText.textContent = q.question;
+    infoOptionsContainer.innerHTML = '';
+
+    const letters = ['A', 'B', 'C', 'D', 'E'];
+
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.classList.add('option-btn');
+        if (infoUserAnswers[index] === i) {
+            btn.classList.add('selected');
+        }
+        btn.innerHTML = `<strong>${letters[i]})</strong> ${opt}`;
+        btn.addEventListener('click', () => selectInfoOption(i));
+        infoOptionsContainer.appendChild(btn);
+    });
+
+    infoPrevBtn.disabled = index === 0;
+    infoNextBtn.textContent = index === infoQuestions.length - 1 ? "Rever Prova" : "Próxima ➔";
+}
+
+// Selecionar Alternativa
+function selectInfoOption(optionIndex) {
+    infoUserAnswers[infoCurrentIndex] = optionIndex;
+    loadInfoQuestion(infoCurrentIndex);
+    updateInfoGridItem(infoCurrentIndex);
+}
+
+// Navegação
+if (infoNextBtn) {
+    infoNextBtn.addEventListener('click', () => {
+        if (infoCurrentIndex < infoQuestions.length - 1) {
+            infoCurrentIndex++;
+            loadInfoQuestion(infoCurrentIndex);
+        } else {
+            // Se estiver na última, avança para o final ou confirma
+            if (confirm("Deseja finalizar e ver o resultado da prova?")) {
+                finishInfoExam();
+            }
+        }
+    });
+}
+
+if (infoPrevBtn) {
+    infoPrevBtn.addEventListener('click', () => {
+        if (infoCurrentIndex > 0) {
+            infoCurrentIndex--;
+            loadInfoQuestion(infoCurrentIndex);
+        }
+    });
+}
+
+// Construir Gabarito Lateral (1 a 100)
+function buildInfoGrid() {
+    if (!infoQuestionGrid) return;
+    infoQuestionGrid.innerHTML = '';
+    for (let i = 0; i < infoQuestions.length; i++) {
+        const box = document.createElement('button'); // ou div
+        box.classList.add('q-dot');
+        box.textContent = i + 1;
+        box.id = `info-grid-${i}`;
+        if (infoUserAnswers[i] !== null) {
+            box.classList.add('answered');
+        }
+        box.addEventListener('click', () => {
+            infoCurrentIndex = i;
+            loadInfoQuestion(infoCurrentIndex);
+        });
+        infoQuestionGrid.appendChild(box);
+    }
+}
+
+function updateInfoGridItem(index) {
+    const box = document.getElementById(`info-grid-${index}`);
+    if (box) {
+        if (infoUserAnswers[index] !== null) {
+            box.classList.add('answered');
+        } else {
+            box.classList.remove('answered');
+        }
+    }
+}
+
+// Finalizar Prova
+if (infoFinishBtn) {
+    infoFinishBtn.addEventListener('click', () => {
+        if (confirm("Tem certeza de que deseja finalizar o simulado de informática?")) {
+            finishInfoExam();
+        }
+    });
+}
+
+function finishInfoExam() {
+    clearInterval(infoTimerInterval);
+    infoQuizArea.classList.add('hidden');
+    infoResultArea.classList.remove('hidden');
+
+    let score = 0;
+    infoQuestions.forEach((q, i) => {
+        if (infoUserAnswers[i] === q.answer) {
+            score++;
+        }
+    });
+
+    const scoreDisplay = document.getElementById('info-score-display');
+    if (scoreDisplay) {
+        scoreDisplay.textContent = `${score} / ${infoQuestions.length}`;
+    }
+}
+
+// Botão Sair do Simulado de Informática
+if (infoExitBtn) {
+    infoExitBtn.addEventListener('click', () => {
+        if (confirm("Deseja realmente sair do simulado? O seu progresso atual será reiniciado.")) {
+            clearInterval(infoTimerInterval);
+            infoQuizArea.classList.add('hidden');
+            infoResultArea.classList.add('hidden');
+            infoIntro.classList.remove('hidden');
+        }
+    });
+}
+
+// Tentar Novamente
+if (infoRestartBtn) {
+    infoRestartBtn.addEventListener('click', () => {
+        infoResultArea.classList.add('hidden');
+        infoIntro.classList.remove('hidden');
     });
 }
