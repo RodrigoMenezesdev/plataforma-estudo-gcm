@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado Estratégico - Concurso Guarda Municipal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), #1e293b);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-button {
+            background-color: var(--secondary);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, filter 0.2s;
+            box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .feature-box i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-section {
+            background-color: #f1f5f9;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .price-card {
+            background: white;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--secondary);
+        }
+
+        .price-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Simples -->
+    <header class="app-header">
+        <div class="logo-area">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Plataforma Concurso Municipal</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Domine a Prova da Guarda Municipal com Simulados de Alta Performance</h1>
+        <p>Treine com questões focadas no perfil da banca, cronómetro em tempo real, gabarito interativo estilo
+            cartão-resposta e flashcards de memorização rápida.</p>
+        <a href="#comprar" class="cta-button"><i class="fa-solid fa-rocket"></i> Garantir Acesso Completo</a>
+    </section>
+
+    <!-- Recursos / Benefícios -->
+    <div class="features-container">
+        <div class="feature-box">
+            <i class="fa-solid fa-stopwatch"></i>
+            <h3>Super Simulado de Prova</h3>
+            <p>Simulado real com 50 questões mistas e cronómetro regressivo para treinar o tempo exato da sua prova.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-laptop-code"></i>
+            <h3>Módulos Específicos</h3>
+            <p>Bancos de questões focados com 100 questões de Informática e 50 de Raciocínio Lógico (RLM).</p>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <h3>Tecnologia PWA (Offline)</h3>
+            <p>Estude no telemóvel ou computador a qualquer hora, com carregamento instantâneo mesmo sem internet.</p>
+        </div>
+    </div>
+
+    <!-- Secção de Preço / Checkout -->
+    <section id="comprar" class="pricing-section">
+        <div class="price-card">
+            <h2>Acesso Vitalício Completo</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Todo o conteúdo liberado imediatamente</p>
+            <div class="price-value">R$ 47,00</div>
+            <ul
+                style="text-align: left; list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                <li><i class="fa-solid fa-check" style="color: var(--success);"></i> <strong>Super Simulado Real de
+                        Prova (50Q com Cronómetro)</strong></li>
+                <li><i class="fa-solid fa-check" style="color: var(--success);"></i> Simulado de Informática (100Q)</li>
+                <li><i class="fa-solid fa-check" style="color: var(--success);"></i> Simulado de Raciocínio Lógico - RLM
+                    (50Q)</li>
+                <li><i class="fa-solid fa-check" style="color: var(--success);"></i> Módulo de Flashcards Interativos
+                    (Efeito 3D)</li>
+                <li><i class="fa-solid fa-check" style="color: var(--success);"></i> Atualizações contínuas até a data
+                    da prova</li>
+            </ul>
+            <!-- Substitua o link abaixo pelo link real gerado na Kiwify -->
+            <a href="https://pay.kiwify.com.br/SEU-LINK-AQUI" class="cta-button"
+                style="width: 100%; text-align: center; box-sizing: border-box;">Comprar Agora via Pix / Cartão</a>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer style="text-align: center; padding: 2rem; background: var(--primary); color: white; font-size: 0.9rem;">
+        <p>&copy; 2026 Plataforma de Estudos para Concursos. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
