@@ -611,3 +611,84 @@ nav.nav-tabs a.tab-btn {
         font-size: 0.95rem;
     }
 }
+
+/* ==========================================
+   ESTILOS DO SIMULADO DE CTB
+   ========================================== */
+
+#ctb-section .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+#ctb-section .option-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    color: #1e293b;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#ctb-section .option-btn:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+#ctb-section .option-btn.selected {
+    background-color: #ebf8ff;
+    border-color: #3182ce;
+    color: #2b6cb0;
+    font-weight: 600;
+}
+
+#ctb-question-grid.q-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+#ctb-question-grid .q-dot {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #edf2f7;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#ctb-question-grid .q-dot:hover {
+    background-color: #e2e8f0;
+}
+
+#ctb-question-grid .q-dot.answered {
+    background-color: #3182ce;
+    color: white;
+    border-color: #2b6cb0;
+}
+
+.btn.success-btn {
+    background-color: #38a169;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn.success-btn:hover {
+    background-color: #2f855a;
+}

@@ -43,6 +43,9 @@
             </button>
             <button class="tab-btn" data-target="info-section"><i class="fa-solid fa-desktop"></i>
                 Simulado Informática (100Q)</button>
+            <button class="tab-btn" data-target="ctb-section">
+                <i class="fa-solid fa-car"></i> Simulado CTB (50Q)
+            </button>
         </nav>
     </header>
 
@@ -407,15 +410,15 @@
             </div>
         </section>
 
-        <!-- Secção: Simulado Informática (100Q) -->
+        <!-- Seção: Simulado Informática (100Q) -->
         <section id="info-section" class="content-section hidden">
             <div class="simulado-top-bar">
                 <h2>Simulado Informática (100Q) - COSEAC</h2>
                 <div id="info-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 04:00:00</div>
             </div>
 
-            <!-- Introdução -->
-            <div id="info-intro" class="card">
+            <!-- Introdução de Informática -->
+            <div id="info-intro" class="card text-center">
                 <p>Simulado exclusivo de <strong>Noções de Informática</strong> focado no edital COSEAC/UFF para Guarda
                     Municipal. Teste seu conhecimento com 100 questões abrangendo Windows, Pacote Office, Redes e
                     Segurança da Informação.</p>
@@ -423,7 +426,7 @@
                     Informática</button>
             </div>
 
-            <!-- Área do Quiz (Oculta inicialmente) -->
+            <!-- Área do Quiz de Informática -->
             <div id="info-quiz-area" class="hidden">
                 <div class="quiz-layout">
                     <div class="question-card card">
@@ -459,7 +462,7 @@
                 </div>
             </div>
 
-            <!-- Área de Resultado -->
+            <!-- Área de Resultado de Informática -->
             <div id="info-result-area" class="hidden card text-center">
                 <h3>Resultado do Simulado de Informática</h3>
                 <p>Você concluiu o simulado!</p>
@@ -468,13 +471,75 @@
             </div>
         </section>
 
+        <!-- Seção: Simulado CTB (50Q) -->
+        <section id="ctb-section" class="content-section hidden">
+            <div class="simulado-top-bar">
+                <h2>Simulado CTB (50 Questões) - Trânsito</h2>
+                <div id="ctb-timer-top" class="timer-badge"><i class="fa-solid fa-clock"></i> 02:00:00</div>
+            </div>
+
+            <!-- Introdução CTB -->
+            <div id="ctb-intro" class="card text-center">
+                <p>Questões focadas na Legislação de Trânsito (Código de Trânsito Brasileiro - CTB) para a Guarda
+                    Municipal de Maricá.</p>
+                <button id="start-ctb-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                    CTB</button>
+            </div>
+
+            <!-- Área do Quiz CTB -->
+            <div id="ctb-quiz-area" class="hidden">
+                <div class="quiz-layout">
+                    <div class="question-card card">
+                        <div class="q-meta">
+                            <span id="ctb-subject-badge" class="badge">Legislação de Trânsito</span>
+                            <span id="ctb-q-number">Questão 1 de 50</span>
+                        </div>
+                        <h3 id="ctb-q-text">Enunciado da questão aparecerá aqui...</h3>
+                        <div id="ctb-options-container" class="options-list">
+                            <!-- Opções geradas via JS -->
+                        </div>
+                        <div class="quiz-nav-buttons">
+                            <button id="ctb-exit-btn" class="btn danger-btn"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
+                            <div>
+                                <button id="ctb-prev-q-btn" class="btn secondary-btn" disabled><i
+                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
+                                <button id="ctb-next-q-btn" class="btn primary-btn">Próxima <i
+                                        class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gabarito Lateral CTB -->
+                    <div class="gabarito-card card">
+                        <h4>Gabarito CTB</h4>
+                        <div id="ctb-question-grid" class="q-grid">
+                            <!-- Grade gerada via JS -->
+                        </div>
+                        <button id="ctb-finish-btn" class="btn danger-btn full-width"><i
+                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de Resultado CTB -->
+            <div id="ctb-result-area" class="hidden card text-center">
+                <h3>Resultado do Simulado CTB</h3>
+                <p>Você concluiu o simulado!</p>
+                <div class="score-display" id="ctb-score-display">0 / 50</div>
+                <button id="ctb-restart-btn" class="btn primary-btn">Tentar Novamente</button>
+            </div>
+        </section>
     </main>
 
-    <!-- Importação do JS externo -->
 
     <!-- Scripts dos Simulados -->
-    <script src="rlm-50q.js"></script>
+    <script src="geral-50q.js"></script>
     <script src="info-100q.js"></script>
+    <script src="rlm-50q.js"></script>
+    <script src="ctb-50q.js"></script>
+    <script src="especificas-100q.js"></script>
+    <script src="flashcards.js"></script>
     <script src="script.js"></script>
 </body>
 
