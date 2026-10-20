@@ -692,3 +692,42 @@ nav.nav-tabs a.tab-btn {
 .btn.success-btn:hover {
     background-color: #2f855a;
 }
+
+/* Caixa de Feedback e Explicação */
+.feedback-box {
+    margin-top: 15px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Quando acerta: Fundo Azul Suave / Destaque */
+.feedback-box.correto {
+    background-color: #ebf8ff;
+    /* Azul bem suave */
+    border: 1px solid #3182ce;
+    /* Borda azul */
+    color: #2b6cb0;
+}
+
+/* Quando erra: Fundo Amarelo Suave (ou se preferir tom de alerta) */
+.feedback-box.incorreto {
+    background-color: #fefcbf;
+    /* Amarelo suave tipo post-it */
+    border: 1px solid #d69e2e;
+    /* Borda amarela/dourada escura */
+    color: #744210;
+}
+
+.feedback-status {
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.feedback-text {
+    color: #2d3748;
+    /* Texto da explicação bem legível */
+}

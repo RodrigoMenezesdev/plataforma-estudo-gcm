@@ -652,8 +652,8 @@ if (startInfoBtn) {
         infoUserAnswers = new Array(infoQuestions.length).fill(null);
 
         loadInfoQuestion(infoCurrentIndex);
-        buildInfoGrid();
-        startInfoTimer();
+        if (typeof buildInfoGrid === 'function') buildInfoGrid();
+        if (typeof startInfoTimer === 'function') startInfoTimer();
     });
 }
 
@@ -669,7 +669,9 @@ function loadInfoQuestion(index) {
     const infoNextBtn = document.getElementById('info-next-q-btn');
 
     if (infoQNumber) infoQNumber.textContent = `Questão ${index + 1} de ${infoQuestions.length}`;
-    if (infoQText) infoQText.textContent = q.question;
+    if (infoQText) infoQText.textContent = q.question || q.text;
+
+    const userAnswer = infoUserAnswers[index];
 
     if (infoOptionsContainer) {
         infoOptionsContainer.innerHTML = '';
@@ -678,24 +680,70 @@ function loadInfoQuestion(index) {
         q.options.forEach((opt, i) => {
             const btn = document.createElement('button');
             btn.classList.add('option-btn');
-            if (infoUserAnswers[index] === i) {
-                btn.classList.add('selected');
+
+            // Se o usuário já respondeu esta questão
+            if (userAnswer !== null) {
+                if (i === q.correct || i === q.answer) {
+                    btn.classList.add('correta'); // destaca a certa
+                }
+                if (i === userAnswer && userAnswer !== (q.correct ?? q.answer)) {
+                    btn.classList.add('errada'); // destaca a errada escolhida
+                }
             }
+
             btn.innerHTML = `<strong>${letters[i]})</strong> ${opt}`;
             btn.addEventListener('click', () => selectInfoOption(i));
             infoOptionsContainer.appendChild(btn);
         });
     }
 
+    // Exibe ou oculta a caixinha de feedback/explicação
+    renderInfoFeedback(q, userAnswer);
+
     if (infoPrevBtn) infoPrevBtn.disabled = index === 0;
     if (infoNextBtn) infoNextBtn.textContent = index === infoQuestions.length - 1 ? "Rever Prova" : "Próxima ➔";
 }
 
-// Selecionar Alternativa
+// Selecionar Alternativa com Feedback Instantâneo
 function selectInfoOption(optionIndex) {
     infoUserAnswers[infoCurrentIndex] = optionIndex;
     loadInfoQuestion(infoCurrentIndex);
-    updateInfoGridItem(infoCurrentIndex);
+    if (typeof updateInfoGridItem === 'function') updateInfoGridItem(infoCurrentIndex);
+}
+
+// Renderizar Caixinha de Feedback e Lembrete/Explicação
+function renderInfoFeedback(q, userAnswer) {
+    const feedbackBox = document.getElementById('info-feedback-box');
+    const feedbackStatus = document.getElementById('info-feedback-status');
+    const feedbackText = document.getElementById('info-feedback-text');
+
+    if (!feedbackBox) return;
+
+    if (userAnswer === null) {
+        feedbackBox.classList.add('hidden');
+        return;
+    }
+
+    feedbackBox.classList.remove('hidden');
+
+    const correctIndex = q.correct ?? q.answer;
+
+    if (userAnswer === correctIndex) {
+        feedbackBox.className = 'feedback-box correto';
+        if (feedbackStatus) {
+            feedbackStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> Resposta Correta!';
+        }
+    } else {
+        feedbackBox.className = 'feedback-box incorreto';
+        const correctLetter = String.fromCharCode(65 + correctIndex);
+        if (feedbackStatus) {
+            feedbackStatus.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Resposta Incorreta. A alternativa certa é a <strong>${correctLetter}</strong>.`;
+        }
+    }
+
+    if (feedbackText) {
+        feedbackText.innerText = q.explanation || q.explicacao || "Sem explicação cadastrada para esta questão.";
+    }
 }
 
 // Navegação
@@ -708,7 +756,7 @@ if (infoNextBtn) {
             loadInfoQuestion(infoCurrentIndex);
         } else {
             if (confirm("Deseja finalizar e ver o resultado da prova?")) {
-                finishInfoExam();
+                if (typeof finishInfoExam === 'function') finishInfoExam();
             }
         }
     });
@@ -723,7 +771,6 @@ if (infoPrevBtn) {
         }
     });
 }
-
 // Construir Gabarito Lateral (1 a 100)
 function buildInfoGrid() {
     const infoQuestionGrid = document.getElementById('info-question-grid');
