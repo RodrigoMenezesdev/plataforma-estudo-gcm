@@ -731,3 +731,41 @@ nav.nav-tabs a.tab-btn {
     color: #2d3748;
     /* Texto da explicação bem legível */
 }
+
+/* Estilos para os botões de opção após a resposta */
+#ctb-section .option-btn.correta {
+    background-color: #f0fff4 !important;
+    /* Verde bem suave */
+    border-color: #38a169 !important;
+    /* Borda verde */
+    color: #22543d !important;
+    font-weight: 600;
+}
+
+#ctb-section .option-btn.errada {
+    background-color: #fff5f5 !important;
+    /* Vermelho bem suave */
+    border-color: #e53e3e !important;
+    /* Borda vermelha */
+    color: #9b2c2c !important;
+    font-weight: 600;
+}
+
+/* Estilização da barra de rolagem da prova */
+.prova-scroll-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.prova-scroll-box::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.prova-scroll-box::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.prova-scroll-box::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}

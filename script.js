@@ -939,23 +939,37 @@ function loadCtbQuestion(index) {
     const ctbNextBtn = document.getElementById('ctb-next-q-btn');
 
     if (ctbQNumber) ctbQNumber.textContent = `Questão ${index + 1} de ${ctbBank.length}`;
-    if (ctbQText) ctbQText.textContent = q.pergunta || q.question;
+    if (ctbQText) ctbQText.textContent = q.pergunta || q.question || q.text;
+
+    const userAnswer = ctbUserAnswers[index];
 
     if (ctbOptionsContainer) {
         ctbOptionsContainer.innerHTML = '';
         const opts = q.opcoes || q.options || [];
+        const correctIndex = (q.correta !== undefined) ? q.correta : q.answer;
 
         opts.forEach((opt, i) => {
             const btn = document.createElement('button');
             btn.classList.add('option-btn');
-            if (ctbUserAnswers[index] === i) {
-                btn.classList.add('selected');
+
+            // Destaca a alternativa correta e a errada se o usuário já respondeu
+            if (userAnswer !== null) {
+                if (i === correctIndex) {
+                    btn.classList.add('correta');
+                }
+                if (i === userAnswer && userAnswer !== correctIndex) {
+                    btn.classList.add('errada');
+                }
             }
+
             btn.innerHTML = opt;
             btn.addEventListener('click', () => selectCtbOption(i));
             ctbOptionsContainer.appendChild(btn);
         });
     }
+
+    // Renderiza a caixinha de feedback e explicação abaixo das opções
+    renderCtbFeedback(q, userAnswer);
 
     if (ctbPrevBtn) ctbPrevBtn.disabled = index === 0;
     if (ctbNextBtn) ctbNextBtn.textContent = index === ctbBank.length - 1 ? "Rever Prova" : "Próxima ➔";
@@ -965,6 +979,41 @@ function selectCtbOption(optionIndex) {
     ctbUserAnswers[ctbCurrentIndex] = optionIndex;
     loadCtbQuestion(ctbCurrentIndex);
     updateCtbGridItem(ctbCurrentIndex);
+}
+
+// Nova função para gerir o feedback visual do CTB
+function renderCtbFeedback(q, userAnswer) {
+    const feedbackBox = document.getElementById('ctb-feedback-box');
+    const feedbackStatus = document.getElementById('ctb-feedback-status');
+    const feedbackText = document.getElementById('ctb-feedback-text');
+
+    if (!feedbackBox) return;
+
+    if (userAnswer === null) {
+        feedbackBox.classList.add('hidden');
+        return;
+    }
+
+    feedbackBox.classList.remove('hidden');
+
+    const correctIndex = (q.correta !== undefined) ? q.correta : q.answer;
+
+    if (userAnswer === correctIndex) {
+        feedbackBox.className = 'feedback-box correto';
+        if (feedbackStatus) {
+            feedbackStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> Resposta Correta!';
+        }
+    } else {
+        feedbackBox.className = 'feedback-box incorreto';
+        const correctLetter = String.fromCharCode(65 + correctIndex);
+        if (feedbackStatus) {
+            feedbackStatus.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Resposta Incorreta. A alternativa certa é a <strong>${correctLetter}</strong>.`;
+        }
+    }
+
+    if (feedbackText) {
+        feedbackText.innerText = q.explanation || q.explicacao || "Sem explicação cadastrada para esta questão.";
+    }
 }
 
 const ctbNextBtn = document.getElementById('ctb-next-q-btn');

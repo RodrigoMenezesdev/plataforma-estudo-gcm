@@ -59,35 +59,93 @@
                 <div id="timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 04:00:00</div>
             </div>
 
+            <!-- Introdução Unificada com a Prova Completa e Acesso ao PDF -->
             <div id="simulado-intro" class="card">
-                <p>Simulado completo baseado no padrão da banca COSEAC/UFF (2019): 10 questões de Português, 10 de
-                    Raciocínio Lógico/Informática e 30 de Conhecimentos Específicos.</p>
-                <button id="start-simulado-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar
-                    Prova</button>
-            </div>
-
-            <!-- Card de Dicas e Foco na Prova -->
-            <div class="card study-tips-card" style="border-left: 5px solid #2b6cb0; margin-top: 20px;">
-                <h3 style="color: #1a365d; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                    <i class="fa-solid fa-bullseye" style="color: #d69e2e;"></i> Foco na Prova: O que mais cai
-                    (COSEAC/UFF)
-                </h3>
-                <p style="color: #4a5568; font-size: 14px; line-height: 1.5; margin-bottom: 15px;">
-                    O concurso cobra conteúdos densos divididos em blocos essenciais. Priorize a revisão diária nestes
-                    tópicos baseados no edital oficial:
+                <h3 style="margin-bottom: 12px; color: #1e293b;"><i class="fa-solid fa-file-lines"></i> Prova Oficial
+                    Completa - Guarda Municipal de Maricá (COSEAC/UFF - 2019)</h3>
+                <p style="margin-bottom: 12px; color: #475569; font-size: 0.95rem;">
+                    Simulado completo baseado no padrão da banca COSEAC/UFF (2019): 10 questões de Português, 10 de
+                    Raciocínio Lógico/Informática e 30 de Conhecimentos Específicos. Consulte o resumo abaixo ou abra o
+                    documento oficial completo.
                 </p>
-                <ul style="color: #2d3748; font-size: 14px; padding-left: 20px; line-height: 1.6;">
-                    <li><strong>Língua Portuguesa:</strong> Interpretação de textos, coesão, sintaxe e regência.</li>
-                    <li><strong>Raciocínio Lógico & Informática:</strong> Sequências lógicas, Excel/Word, Windows/Linux
-                        e Noções de Segurança da Informação.</li>
-                    <li><strong>Direito Constitucional & Administrativo:</strong> Art. 5º da CF/88, Atos
-                        Administrativos, Poderes da Administração e Licitações.</li>
-                    <li><strong>Legislação Específica & Direitos Humanos:</strong> Estatuto Geral das Guardas Municipais
-                        (Lei 13.022/2014), Estatuto da Criança e do Adolescente (ECA) e Leis Penais Especiais.</li>
-                </ul>
+
+                <!-- Caixa com barra de rolagem contendo as informações e estrutura do edital -->
+                <div class="prova-scroll-box"
+                    style="max-height: 200px; overflow-y: auto; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; font-size: 0.9rem; line-height: 1.6; color: #334155; margin-bottom: 15px;">
+                    <h4 style="color: #1e293b; margin-bottom: 6px;">UFF - UNIVERSIDADE FEDERAL FLUMINENSE</h4>
+                    <h5 style="color: #475569; margin-bottom: 10px;">COSEAC — PREFEITURA MUNICIPAL DE MARICÁ (EDITAL Nº
+                        2/2019)</h5>
+
+                    <p><strong>Cargo:</strong> GUARDA MUNICIPAL | <strong>Nível:</strong> MÉDIO</p>
+
+                    <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 8px 0;">
+
+                    <p><strong>Instruções ao candidato (Parte integrante do Edital - subitem 12.2):</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 8px;">
+                        <li>Ao receber o Caderno de Questões, confira se o cargo indicado é aquele para o qual está
+                            concorrendo.</li>
+                        <li>O caderno contém 50 questões objetivas e espaços para rascunho.</li>
+                        <li>Cada questão apresenta cinco opções de resposta (A, B, C, D, E), sendo apenas uma correta.
+                        </li>
+                        <li>O tempo disponível para a realização da prova é de no mínimo 1 hora e 30 minutos e no máximo
+                            4 horas.</li>
+                        <li>Utilize somente caneta esferográfica de corpo transparente com tinta azul ou preta.</li>
+                    </ul>
+
+                    <p style="margin-top: 8px;"><strong>Frase para o exame grafotécnico:</strong> <em>"A coragem cresce
+                            com a ocasião. (William Shakespeare)"</em></p>
+
+                    <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 8px 0;">
+
+                    <p><strong>Estrutura da Prova (16 Páginas):</strong></p>
+                    <p>- <strong>Língua Portuguesa (10Q):</strong> Textos (Texto 1 e Texto 2 - Guarda Belo), coesão,
+                        sintaxe e gramática.</p>
+                    <p>- <strong>Raciocínio Lógico & Informática (10Q):</strong> Matemática financeira, sequências,
+                        conjuntos, Excel, Linux e Windows.</p>
+                    <p>- <strong>Conhecimentos Específicos (30Q):</strong> Direito Administrativo, Constitucional,
+                        Penal, Legislação GCM (Lei 13.022/14), CTB e Direitos Humanos.</p>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button id="start-simulado-btn" class="btn primary-btn" style="flex: 1;"><i
+                            class="fa-solid fa-play"></i> Iniciar Prova Oficial (50Q)</button>
+
+                    <!-- Botão para abrir o PDF completo das 16 páginas -->
+                    <a href="guarda.pdf" target="_blank" class="btn secondary-btn"
+                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        <i class="fa-solid fa-file-pdf"></i> Abrir PDF Completo (16 Pág)
+                    </a>
+                </div>
             </div>
 
+            <!-- Área do Quiz com Leitor de PDF Integrado -->
             <div id="simulado-quiz-area" class="hidden">
+
+                <!-- Botão de Acesso Direto ao PDF Oficial em Nova Aba -->
+                <div style="margin-bottom: 15px;">
+                    <a href="guarda.pdf" target="_blank" class="btn secondary-btn"
+                        style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-file-pdf"></i> Consultar Prova Oficial (PDF Completo)
+                    </a>
+                </div>
+
+                <!-- Container do PDF Integrado (Inicialmente Oculto) -->
+                <div id="pdf-viewer-container" class="card hidden"
+                    style="margin-bottom: 20px; border: 2px solid #3182ce; padding: 10px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
+                        <span style="font-weight: bold; color: #1e293b;"><i class="fa-solid fa-book-open"></i> Caderno
+                            de Questões Oficial - COSEAC 2019</span>
+                        <button id="close-pdf-btn" class="btn danger-btn"
+                            style="padding: 5px 12px; font-size: 0.85rem;">
+                            <i class="fa-solid fa-xmark"></i> Fechar PDF
+                        </button>
+                    </div>
+                    <iframe src="guarda.pdf"
+                        style="width: 100%; height: 450px; border: none; border-radius: 6px;"></iframe>
+                </div>
+
                 <div class="quiz-layout">
                     <div class="question-card card">
                         <div class="q-meta">
@@ -503,9 +561,17 @@
                             <span id="ctb-q-number">Questão 1 de 50</span>
                         </div>
                         <h3 id="ctb-q-text">Enunciado da questão aparecerá aqui...</h3>
+
                         <div id="ctb-options-container" class="options-list">
                             <!-- Opções geradas via JS -->
                         </div>
+
+                        <!-- Caixinha de Feedback / Explicação do CTB (Posicionada corretamente DENTRO do cartão) -->
+                        <div id="ctb-feedback-box" class="feedback-box hidden">
+                            <div id="ctb-feedback-status" class="feedback-status"></div>
+                            <div id="ctb-feedback-text" class="feedback-text"></div>
+                        </div>
+
                         <div class="quiz-nav-buttons">
                             <button id="ctb-exit-btn" class="btn danger-btn"><i
                                     class="fa-solid fa-right-from-bracket"></i> Sair</button>
@@ -539,7 +605,6 @@
             </div>
         </section>
     </main>
-
 
     <!-- Scripts dos Simulados -->
     <script src="geral-50q.js"></script>
