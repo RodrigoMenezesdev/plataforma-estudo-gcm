@@ -1160,3 +1160,266 @@ if (ctbRestartBtn) {
         if (ctbIntro) ctbIntro.classList.remove('hidden');
     });
 }
+
+// ==========================================
+// MOTOR DO SIMULADO LEI 1416 (Estatuto de São Gonçalo)
+// ==========================================
+
+let lei1416CurrentIndex = 0;
+let lei1416UserAnswers = [];
+let lei1416TimerInterval;
+let lei1416TotalSeconds = 2 * 60 * 60; // 2 horas
+
+const startLei1416Btn = document.getElementById('start-lei1416-btn');
+
+if (startLei1416Btn) {
+    startLei1416Btn.addEventListener('click', () => {
+        // Usa a variável correta que está declarada no teu lei1416-50q.js
+        const lei1416Bank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
+
+        if (!lei1416Bank.length) {
+            alert("O banco de questões da Lei 1416 não foi encontrado. Verifique se o arquivo lei1416-50q.js está carregado.");
+            return;
+        }
+
+        const lei1416Intro = document.getElementById('lei1416-intro');
+        const lei1416QuizArea = document.getElementById('lei1416-quiz-area');
+        const lei1416ResultArea = document.getElementById('lei1416-result-area');
+
+        if (lei1416Intro) lei1416Intro.classList.add('hidden');
+        if (lei1416ResultArea) lei1416ResultArea.classList.add('hidden');
+        if (lei1416QuizArea) lei1416QuizArea.classList.remove('hidden');
+
+        lei1416CurrentIndex = 0;
+        lei1416UserAnswers = new Array(lei1416Bank.length).fill(null);
+
+        loadLei1416Question(lei1416CurrentIndex);
+        if (typeof buildLei1416Grid === 'function') buildLei1416Grid();
+        if (typeof startLei1416Timer === 'function') startLei1416Timer();
+    });
+}
+
+function loadLei1416Question(index) {
+    const lei1416Bank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
+    const q = lei1416Bank[index];
+    if (!q) return;
+
+    const qNumber = document.getElementById('lei1416-q-number');
+    const qText = document.getElementById('lei1416-q-text');
+    const optionsContainer = document.getElementById('lei1416-options-container');
+    const prevBtn = document.getElementById('lei1416-prev-q-btn');
+    const nextBtn = document.getElementById('lei1416-next-q-btn');
+
+    if (qNumber) qNumber.textContent = `Questão ${index + 1} de ${lei1416Bank.length}`;
+    if (qText) qText.textContent = q.pergunta || q.text;
+
+    const userAnswer = lei1416UserAnswers[index];
+    const correctIndex = q.resposta !== undefined ? q.resposta : q.correta;
+
+    if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        const opcoesArr = q.opcoes || q.options;
+
+        if (opcoesArr) {
+            opcoesArr.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.classList.add('option-btn');
+
+                if (userAnswer !== null) {
+                    if (i === correctIndex) {
+                        btn.classList.add('correta');
+                    }
+                    if (i === userAnswer && userAnswer !== correctIndex) {
+                        btn.classList.add('errada');
+                    }
+                }
+
+                // Aplica exatamente o mesmo padrão visual do RLM com as letras em negrito e largura total
+                btn.innerHTML = `<strong>${letters[i]})</strong> ${opt}`;
+                btn.addEventListener('click', () => selectLei1416Option(i));
+                optionsContainer.appendChild(btn);
+            });
+        }
+    }
+
+    renderLei1416Feedback(q, userAnswer);
+
+    if (prevBtn) prevBtn.disabled = index === 0;
+    if (nextBtn) nextBtn.textContent = index === lei1416Bank.length - 1 ? "Rever Prova" : "Próxima ➔";
+}
+
+function selectLei1416Option(optionIndex) {
+    lei1416UserAnswers[lei1416CurrentIndex] = optionIndex;
+    loadLei1416Question(lei1416CurrentIndex);
+    if (typeof updateLei1416GridItem === 'function') updateLei1416GridItem(lei1416CurrentIndex);
+}
+
+function renderLei1416Feedback(q, userAnswer) {
+    const feedbackBox = document.getElementById('lei1416-feedback-box');
+    const feedbackStatus = document.getElementById('lei1416-feedback-status');
+    const feedbackText = document.getElementById('lei1416-feedback-text');
+
+    if (!feedbackBox) return;
+
+    if (userAnswer === null) {
+        feedbackBox.classList.add('hidden');
+        return;
+    }
+
+    feedbackBox.classList.remove('hidden');
+    const correctIndex = q.resposta !== undefined ? q.resposta : q.correta;
+
+    if (userAnswer === correctIndex) {
+        feedbackBox.className = 'feedback-box correto';
+        if (feedbackStatus) {
+            feedbackStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> Resposta Correta!';
+        }
+    } else {
+        feedbackBox.className = 'feedback-box incorreto';
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        const correctLetter = letters[correctIndex] || (correctIndex + 1);
+        if (feedbackStatus) {
+            feedbackStatus.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Resposta Incorreta. A alternativa certa é a <strong>${correctLetter}</strong>.`;
+        }
+    }
+
+    if (feedbackText) {
+        // Mapeia para a propriedade correta do teu objeto (exibicaoResposta)
+        feedbackText.innerText = q.exibicaoResposta || q.explicacao || "Sem explicação cadastrada para esta questão.";
+    }
+}
+
+const lei1416NextBtn = document.getElementById('lei1416-next-q-btn');
+if (lei1416NextBtn) {
+    lei1416NextBtn.addEventListener('click', () => {
+        const lei1416Bank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
+        if (lei1416CurrentIndex < lei1416Bank.length - 1) {
+            lei1416CurrentIndex++;
+            loadLei1416Question(lei1416CurrentIndex);
+        } else {
+            if (confirm("Deseja finalizar e ver o resultado da prova?")) {
+                if (typeof finishLei1416Exam === 'function') finishLei1416Exam();
+            }
+        }
+    });
+}
+
+const lei1416PrevBtn = document.getElementById('lei1416-prev-q-btn');
+if (lei1416PrevBtn) {
+    lei1416PrevBtn.addEventListener('click', () => {
+        if (lei1416CurrentIndex > 0) {
+            lei1416CurrentIndex--;
+            loadLei1416Question(lei1416CurrentIndex);
+        }
+    });
+}
+
+function buildLei1416Grid() {
+    const lei1416Grid = document.getElementById('lei1416-question-grid');
+    const lei1416Bank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
+    if (!lei1416Grid || !lei1416Bank.length) return;
+
+    lei1416Grid.innerHTML = '';
+    for (let i = 0; i < lei1416Bank.length; i++) {
+        const box = document.createElement('button');
+        box.classList.add('q-dot');
+        box.textContent = i + 1;
+        box.id = `lei1416-grid-${i}`;
+        if (lei1416UserAnswers[i] !== null) {
+            box.classList.add('answered');
+        }
+        box.addEventListener('click', () => {
+            lei1416CurrentIndex = i;
+            loadLei1416Question(lei1416CurrentIndex);
+        });
+        lei1416Grid.appendChild(box);
+    }
+}
+
+function updateLei1416GridItem(index) {
+    const box = document.getElementById(`lei1416-grid-${index}`);
+    if (box) {
+        if (lei1416UserAnswers[index] !== null) {
+            box.classList.add('answered');
+        } else {
+            box.classList.remove('answered');
+        }
+    }
+}
+
+function startLei1416Timer() {
+    clearInterval(lei1416TimerInterval);
+    lei1416TotalSeconds = 2 * 60 * 60; // 2 horas
+    const timerDisplay = document.getElementById('lei1416-timer');
+    if (!timerDisplay) return;
+
+    lei1416TimerInterval = setInterval(() => {
+        if (lei1416TotalSeconds <= 0) {
+            clearInterval(lei1416TimerInterval);
+            alert("O tempo do simulado da Lei 1416 esgotou!");
+            finishLei1416Exam();
+            return;
+        }
+
+        lei1416TotalSeconds--;
+        const hours = Math.floor(lei1416TotalSeconds / 3600);
+        const minutes = Math.floor((lei1416TotalSeconds % 3600) / 60);
+        const seconds = lei1416TotalSeconds % 60;
+
+        timerDisplay.innerHTML = `<i class="fa-solid fa-clock"></i> ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+}
+
+const lei1416FinishBtn = document.getElementById('lei1416-finish-btn');
+if (lei1416FinishBtn) {
+    lei1416FinishBtn.addEventListener('click', () => {
+        if (confirm("Tem certeza de que deseja finalizar o simulado da Lei 1416?")) {
+            finishLei1416Exam();
+        }
+    });
+}
+
+function finishLei1416Exam() {
+    clearInterval(lei1416TimerInterval);
+    const quizArea = document.getElementById('lei1416-quiz-area');
+    const resultArea = document.getElementById('lei1416-result-area');
+
+    if (quizArea) quizArea.classList.add('hidden');
+    if (resultArea) resultArea.classList.remove('hidden');
+
+    const lei1416Bank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
+    let score = 0;
+
+    lei1416Bank.forEach((q, i) => {
+        const correctIndex = q.resposta !== undefined ? q.resposta : q.correta;
+        if (lei1416UserAnswers[i] === correctIndex) {
+            score++;
+        }
+    });
+
+    const scoreDisplay = document.getElementById('lei1416-score-display');
+    if (scoreDisplay) {
+        scoreDisplay.textContent = `${score} / ${lei1416Bank.length}`;
+    }
+}
+
+const lei1416ExitBtn = document.getElementById('lei1416-exit-btn');
+if (lei1416ExitBtn) {
+    lei1416ExitBtn.addEventListener('click', () => {
+        if (confirm("Deseja realmente sair do simulado? O seu progresso atual será reiniciado.")) {
+            clearInterval(lei1416TimerInterval);
+            document.getElementById('lei1416-quiz-area')?.classList.add('hidden');
+            document.getElementById('lei1416-result-area')?.classList.add('hidden');
+            document.getElementById('lei1416-intro')?.classList.remove('hidden');
+        }
+    });
+}
+
+const lei1416RestartBtn = document.getElementById('lei1416-restart-btn');
+if (lei1416RestartBtn) {
+    lei1416RestartBtn.addEventListener('click', () => {
+        document.getElementById('lei1416-result-area')?.classList.add('hidden');
+        document.getElementById('lei1416-intro')?.classList.remove('hidden');
+    });
+}

@@ -769,3 +769,60 @@ nav.nav-tabs a.tab-btn {
 .prova-scroll-box::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
 }
+
+/* ==========================================
+   ESTILOS ADICIONAIS PARA O SIMULADO LEI 1416
+   ========================================== */
+
+#lei1416-section .options-list,
+#lei1416-options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+#lei1416-section .option-btn,
+#lei1416-options-container .option-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    color: #1e293b;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#lei1416-section .option-btn:hover,
+#lei1416-options-container .option-btn:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+#lei1416-section .option-btn.selected,
+#lei1416-options-container .option-btn.selected {
+    background-color: #ebf8ff;
+    border-color: #3182ce;
+    color: #2b6cb0;
+    font-weight: 600;
+}
+
+#lei1416-section .option-btn.correta,
+#lei1416-options-container .option-btn.correta {
+    background-color: #f0fff4 !important;
+    border-color: #38a169 !important;
+    color: #22543d !important;
+    font-weight: 600;
+}
+
+#lei1416-section .option-btn.errada,
+#lei1416-options-container .option-btn.errada {
+    background-color: #fff5f5 !important;
+    border-color: #e53e3e !important;
+    color: #9b2c2c !important;
+    font-weight: 600;
+}

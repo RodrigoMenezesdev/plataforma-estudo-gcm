@@ -36,8 +36,9 @@
                 Desempenho</button>
             <button class="tab-btn" data-target="super-simulado-section"><i class="fa-solid fa-list-check"></i>
                 Super Simulado (100Q)</button>
-            <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas
-                Anteriores</button>
+            <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas Anteriores
+                e PDFs de
+                Leis</button>
             <button class="tab-btn" data-target="rlm-section">
                 <i class="fa-solid fa-calculator"></i> Simulado RLM (50Q)
             </button>
@@ -45,6 +46,9 @@
                 Simulado Informática (100Q)</button>
             <button class="tab-btn" data-target="ctb-section">
                 <i class="fa-solid fa-car"></i> Simulado CTB (50Q)
+            </button>
+            <button class="tab-btn" data-target="lei1416-section">
+                <i class="fa-solid fa-landmark"></i> Simulado Lei 1416 (50Q)
             </button>
         </nav>
     </header>
@@ -377,10 +381,10 @@
             </div>
         </section>
 
-        <!-- Seção: Provas Anteriores e Gabaritos -->
+        <!-- Seção: Provas Anteriores, Gabaritos e Leis -->
         <section id="provas-section" class="content-section">
-            <h2>Provas Anteriores e Gabaritos (COSEAC/UFF)</h2>
-            <p>Acesse o caderno oficial e o gabarito do concurso anterior para reforçar o seu treinamento prático:</p>
+            <h2>Provas Anteriores, Gabaritos e Leis</h2>
+            <p>Acesse as provas anteriores, gabaritos oficiais e a legislação de apoio para o seu estudo prático:</p>
 
             <div class="materias-grid" style="margin-top: 1.5rem;">
                 <!-- Card Prova -->
@@ -408,6 +412,20 @@
                     <a href="gab_prel.pdf" target="_blank" class="btn primary-btn"
                         style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
                         <i class="fa-solid fa-square-check"></i> Abrir Gabarito em PDF
+                    </a>
+                </div>
+
+                <!-- Card Lei 1416 (Estatuto de São Gonçalo) -->
+                <div class="card text-center" style="padding: 1.5rem;">
+                    <i class="fa-solid fa-book-bookmark"
+                        style="font-size: 2.5rem; color: #3182ce; margin-bottom: 0.8rem;"></i>
+                    <h3>Estatuto de São Gonçalo (Lei 1416)</h3>
+                    <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                        Texto legal completo da Lei nº 1416/2022 para leitura e consulta detalhada.
+                    </p>
+                    <a href="lei-1416.pdf" target="_blank" class="btn primary-btn"
+                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
+                        <i class="fa-solid fa-file-pdf"></i> Abrir Lei em PDF
                     </a>
                 </div>
             </div>
@@ -604,6 +622,74 @@
                 <button id="ctb-restart-btn" class="btn primary-btn">Tentar Novamente</button>
             </div>
         </section>
+
+        <!-- Seção: Simulado Lei 1416 (50Q) - Estatuto de São Gonçalo -->
+        <section id="lei1416-section" class="content-section hidden">
+            <div class="simulado-top-bar">
+                <h2>Simulado Lei 1416/2022 (50 Questões) - Estatuto dos Servidores de São Gonçalo</h2>
+                <div id="lei1416-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 02:00:00</div>
+            </div>
+
+            <!-- Introdução Lei 1416 -->
+            <div id="lei1416-intro" class="card text-center">
+                <p>Questões focadas no <strong>Estatuto dos Servidores Públicos do Município de São Gonçalo</strong>
+                    (Lei nº 1416/2022) para os concursos da Guarda Civil Municipal.</p>
+                <button id="start-lei1416-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                    Lei 1416</button>
+            </div>
+
+            <!-- Área do Quiz Lei 1416 -->
+            <div id="lei1416-quiz-area" class="hidden">
+                <div class="quiz-layout">
+                    <div class="question-card card">
+                        <div class="q-meta">
+                            <span id="lei1416-subject-badge" class="badge">Estatuto de São Gonçalo</span>
+                            <span id="lei1416-q-number">Questão 1 de 50</span>
+                        </div>
+                        <h3 id="lei1416-q-text">Enunciado da questão aparecerá aqui...</h3>
+
+                        <div id="lei1416-options-container" class="options-list">
+                            <!-- Opções geradas via JS -->
+                        </div>
+
+                        <!-- Caixinha de Feedback / Explicação -->
+                        <div id="lei1416-feedback-box" class="feedback-box hidden">
+                            <div id="lei1416-feedback-status" class="feedback-status"></div>
+                            <div id="lei1416-feedback-text" class="feedback-text"></div>
+                        </div>
+
+                        <div class="quiz-nav-buttons">
+                            <button id="lei1416-exit-btn" class="btn danger-btn"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
+                            <div>
+                                <button id="lei1416-prev-q-btn" class="btn secondary-btn"><i
+                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
+                                <button id="lei1416-next-q-btn" class="btn primary-btn">Próxima <i
+                                        class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gabarito Lateral Lei 1416 -->
+                    <div class="gabarito-card card">
+                        <h4>Gabarito Lei 1416</h4>
+                        <div id="lei1416-question-grid" class="q-grid">
+                            <!-- Caixas geradas via JS -->
+                        </div>
+                        <button id="lei1416-finish-btn" class="btn danger-btn full-width"><i
+                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de Resultado Lei 1416 -->
+            <div id="lei1416-result-area" class="hidden card text-center">
+                <h3>Resultado do Simulado Lei 1416</h3>
+                <p>Você concluiu o simulado!</p>
+                <div class="score-display" id="lei1416-score-display">0 / 50</div>
+                <button id="lei1416-restart-btn" class="btn primary-btn">Tentar Novamente</button>
+            </div>
+        </section>
     </main>
 
     <!-- Scripts dos Simulados -->
@@ -613,6 +699,7 @@
     <script src="ctb-50q.js"></script>
     <script src="especificas-100q.js"></script>
     <script src="flashcards.js"></script>
+    <script src="lei1416-50q.js"></script>
     <script src="script.js"></script>
 </body>
 
