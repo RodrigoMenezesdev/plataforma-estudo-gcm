@@ -6,6 +6,16 @@ let questoesAtuais = (typeof questoesSimulado !== 'undefined') ? questoesSimulad
 let userAnswers = new Array(questoesAtuais.length).fill(null);
 let currentFlashcardIndex = 0;
 
+// Função global para embaralhar um array de forma aleatória (Fisher-Yates)
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 // NAVEGAÇÃO DE ABAS GERAL
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -454,9 +464,15 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// --- Motor do Simulado RLM ---
+// ==========================================
+// MOTOR DO SIMULADO RLC / RLM
+// ==========================================
+
 let rlmCurrentIndex = 0;
-let rlmUserAnswers = (typeof rlmQuestions !== 'undefined' && rlmQuestions.length > 0) ? new Array(rlmQuestions.length).fill(null) : [];
+let rlmUserAnswers = [];
+let rlmTimerInterval;
+let rlmTotalSeconds = 3 * 60 * 60; // 3 horas em segundos
+let rlmActiveBank = []; // Banco ativo com as questões embaralhadas da sessão
 
 const startRlmBtn = document.getElementById('start-rlm-btn');
 const rlmIntro = document.getElementById('rlm-intro');
@@ -465,14 +481,21 @@ const rlmResultArea = document.getElementById('rlm-result-area');
 
 if (startRlmBtn) {
     startRlmBtn.addEventListener('click', () => {
-        if (typeof rlmQuestions === 'undefined') {
+        if (typeof rlmQuestions === 'undefined' || !rlmQuestions.length) {
             alert("O arquivo do simulado de RLM não foi carregado corretamente.");
             return;
         }
+
+        // Embaralha as questões de forma aleatória toda vez que inicia
+        rlmActiveBank = shuffleArray(rlmQuestions);
+
         if (rlmIntro) rlmIntro.classList.add('hidden');
+        if (rlmResultArea) rlmResultArea.classList.add('hidden');
         if (rlmQuizArea) rlmQuizArea.classList.remove('hidden');
+
         rlmCurrentIndex = 0;
-        rlmUserAnswers = new Array(rlmQuestions.length).fill(null);
+        rlmUserAnswers = new Array(rlmActiveBank.length).fill(null);
+
         loadRlmQuestion(rlmCurrentIndex);
         buildRlmGrid();
         startRlmTimer();
@@ -480,12 +503,12 @@ if (startRlmBtn) {
 }
 
 function loadRlmQuestion(index) {
-    if (typeof rlmQuestions === 'undefined') return;
-    const q = rlmQuestions[index];
-    if (!q) return;
+    const bank = rlmActiveBank.length ? rlmActiveBank : (typeof rlmQuestions !== 'undefined' ? rlmQuestions : []);
+    if (!bank[index]) return;
 
+    const q = bank[index];
     const qNum = document.getElementById('rlm-q-number');
-    if (qNum) qNum.innerText = `Questão ${index + 1} de ${rlmQuestions.length}`;
+    if (qNum) qNum.innerText = `Questão ${index + 1} de ${bank.length}`;
 
     const qText = document.getElementById('rlm-q-text');
     if (qText) qText.innerText = q.question;
@@ -522,11 +545,12 @@ function highlightRlmOption(selectedIndex) {
 }
 
 function buildRlmGrid() {
-    if (typeof rlmQuestions === 'undefined') return;
+    const bank = rlmActiveBank.length ? rlmActiveBank : (typeof rlmQuestions !== 'undefined' ? rlmQuestions : []);
     const grid = document.getElementById('rlm-question-grid');
-    if (!grid) return;
+    if (!grid || !bank.length) return;
+
     grid.innerHTML = '';
-    rlmQuestions.forEach((_, i) => {
+    bank.forEach((_, i) => {
         const box = document.createElement('div');
         box.classList.add('q-box');
         box.innerText = i + 1;
@@ -553,7 +577,8 @@ function updateRlmGridItem(index) {
 const rlmNextBtn = document.getElementById('rlm-next-q-btn');
 if (rlmNextBtn) {
     rlmNextBtn.addEventListener('click', () => {
-        if (typeof rlmQuestions !== 'undefined' && rlmCurrentIndex < rlmQuestions.length - 1) {
+        const bank = rlmActiveBank.length ? rlmActiveBank : (typeof rlmQuestions !== 'undefined' ? rlmQuestions : []);
+        if (rlmCurrentIndex < bank.length - 1) {
             rlmCurrentIndex++;
             loadRlmQuestion(rlmCurrentIndex);
         }
@@ -573,16 +598,33 @@ if (rlmPrevBtn) {
 const rlmFinishBtn = document.getElementById('rlm-finish-btn');
 if (rlmFinishBtn) {
     rlmFinishBtn.addEventListener('click', () => {
-        if (typeof rlmQuestions === 'undefined') return;
+        const bank = rlmActiveBank.length ? rlmActiveBank : (typeof rlmQuestions !== 'undefined' ? rlmQuestions : []);
+        if (!bank.length) return;
+
         let score = 0;
-        rlmQuestions.forEach((q, i) => {
+        bank.forEach((q, i) => {
             if (rlmUserAnswers[i] === q.answer) score++;
         });
 
+        clearInterval(rlmTimerInterval);
         if (rlmQuizArea) rlmQuizArea.classList.add('hidden');
         if (rlmResultArea) rlmResultArea.classList.remove('hidden');
+
         const scoreDisplay = document.getElementById('rlm-score-display');
-        if (scoreDisplay) scoreDisplay.innerText = `${score} / ${rlmQuestions.length}`;
+        if (scoreDisplay) scoreDisplay.innerText = `${score} / ${bank.length}`;
+    });
+}
+
+// Botão Sair do RLM
+const rlmExitBtn = document.getElementById('rlm-exit-btn');
+if (rlmExitBtn) {
+    rlmExitBtn.addEventListener('click', () => {
+        if (confirm("Deseja realmente sair do simulado? O seu progresso atual será reiniciado.")) {
+            clearInterval(rlmTimerInterval);
+            if (rlmQuizArea) rlmQuizArea.classList.add('hidden');
+            if (rlmResultArea) rlmResultArea.classList.add('hidden');
+            if (rlmIntro) rlmIntro.classList.remove('hidden');
+        }
     });
 }
 
@@ -595,9 +637,6 @@ if (rlmRestartBtn) {
 }
 
 // --- Cronômetro do Simulado RLM ---
-let rlmTimerInterval;
-let rlmTotalSeconds = 3 * 60 * 60; // 3 horas em segundos
-
 function startRlmTimer() {
     clearInterval(rlmTimerInterval);
     rlmTotalSeconds = 3 * 60 * 60;
@@ -617,7 +656,7 @@ function startRlmTimer() {
         rlmTotalSeconds--;
         const hours = Math.floor(rlmTotalSeconds / 3600);
         const minutes = Math.floor((rlmTotalSeconds % 3600) / 60);
-        const seconds = rlmTotalSeconds % 60;
+        const seconds = rlmTotalSeconds % 60; // corrigido para segundos
 
         timerDisplay.innerHTML = `<i class="fa-solid fa-clock"></i> ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }, 1000);
@@ -631,6 +670,7 @@ let infoCurrentIndex = 0;
 let infoUserAnswers = [];
 let infoTimerInterval;
 let infoTotalSeconds = 4 * 60 * 60; // 4 horas
+let infoActiveBank = []; // Banco ativo com as questões embaralhadas da sessão
 
 const startInfoBtn = document.getElementById('start-info-btn');
 
@@ -642,14 +682,19 @@ if (startInfoBtn) {
             return;
         }
 
+        // Embaralha as questões de forma aleatória toda vez que inicia
+        infoActiveBank = shuffleArray(infoQuestions);
+
         const infoIntro = document.getElementById('info-intro');
         const infoQuizArea = document.getElementById('info-quiz-area');
+        const infoResultArea = document.getElementById('info-result-area');
 
         if (infoIntro) infoIntro.classList.add('hidden');
+        if (infoResultArea) infoResultArea.classList.add('hidden');
         if (infoQuizArea) infoQuizArea.classList.remove('hidden');
 
         infoCurrentIndex = 0;
-        infoUserAnswers = new Array(infoQuestions.length).fill(null);
+        infoUserAnswers = new Array(infoActiveBank.length).fill(null);
 
         loadInfoQuestion(infoCurrentIndex);
         if (typeof buildInfoGrid === 'function') buildInfoGrid();
@@ -659,16 +704,17 @@ if (startInfoBtn) {
 
 // Carregar Questão
 function loadInfoQuestion(index) {
-    if (typeof infoQuestions === 'undefined' || !infoQuestions[index]) return;
+    const bank = infoActiveBank.length ? infoActiveBank : (typeof infoQuestions !== 'undefined' ? infoQuestions : []);
+    if (!bank[index]) return;
 
-    const q = infoQuestions[index];
+    const q = bank[index];
     const infoQNumber = document.getElementById('info-q-number');
     const infoQText = document.getElementById('info-q-text');
     const infoOptionsContainer = document.getElementById('info-options-container');
     const infoPrevBtn = document.getElementById('info-prev-q-btn');
     const infoNextBtn = document.getElementById('info-next-q-btn');
 
-    if (infoQNumber) infoQNumber.textContent = `Questão ${index + 1} de ${infoQuestions.length}`;
+    if (infoQNumber) infoQNumber.textContent = `Questão ${index + 1} de ${bank.length}`;
     if (infoQText) infoQText.textContent = q.question || q.text;
 
     const userAnswer = infoUserAnswers[index];
@@ -676,6 +722,7 @@ function loadInfoQuestion(index) {
     if (infoOptionsContainer) {
         infoOptionsContainer.innerHTML = '';
         const letters = ['A', 'B', 'C', 'D', 'E'];
+        const correctIndex = q.correct ?? q.answer;
 
         q.options.forEach((opt, i) => {
             const btn = document.createElement('button');
@@ -683,10 +730,10 @@ function loadInfoQuestion(index) {
 
             // Se o usuário já respondeu esta questão
             if (userAnswer !== null) {
-                if (i === q.correct || i === q.answer) {
+                if (i === correctIndex) {
                     btn.classList.add('correta'); // destaca a certa
                 }
-                if (i === userAnswer && userAnswer !== (q.correct ?? q.answer)) {
+                if (i === userAnswer && userAnswer !== correctIndex) {
                     btn.classList.add('errada'); // destaca a errada escolhida
                 }
             }
@@ -701,7 +748,7 @@ function loadInfoQuestion(index) {
     renderInfoFeedback(q, userAnswer);
 
     if (infoPrevBtn) infoPrevBtn.disabled = index === 0;
-    if (infoNextBtn) infoNextBtn.textContent = index === infoQuestions.length - 1 ? "Rever Prova" : "Próxima ➔";
+    if (infoNextBtn) infoNextBtn.textContent = index === bank.length - 1 ? "Rever Prova" : "Próxima ➔";
 }
 
 // Selecionar Alternativa com Feedback Instantâneo
@@ -750,8 +797,10 @@ function renderInfoFeedback(q, userAnswer) {
 const infoNextBtn = document.getElementById('info-next-q-btn');
 if (infoNextBtn) {
     infoNextBtn.addEventListener('click', () => {
-        if (typeof infoQuestions === 'undefined') return;
-        if (infoCurrentIndex < infoQuestions.length - 1) {
+        const bank = infoActiveBank.length ? infoActiveBank : (typeof infoQuestions !== 'undefined' ? infoQuestions : []);
+        if (!bank.length) return;
+
+        if (infoCurrentIndex < bank.length - 1) {
             infoCurrentIndex++;
             loadInfoQuestion(infoCurrentIndex);
         } else {
@@ -771,13 +820,15 @@ if (infoPrevBtn) {
         }
     });
 }
-// Construir Gabarito Lateral (1 a 100)
+
+// Construir Gabarito Lateral (1 ao total)
 function buildInfoGrid() {
+    const bank = infoActiveBank.length ? infoActiveBank : (typeof infoQuestions !== 'undefined' ? infoQuestions : []);
     const infoQuestionGrid = document.getElementById('info-question-grid');
-    if (!infoQuestionGrid || typeof infoQuestions === 'undefined') return;
+    if (!infoQuestionGrid || !bank.length) return;
 
     infoQuestionGrid.innerHTML = '';
-    for (let i = 0; i < infoQuestions.length; i++) {
+    for (let i = 0; i < bank.length; i++) {
         const box = document.createElement('button');
         box.classList.add('q-dot');
         box.textContent = i + 1;
@@ -847,18 +898,21 @@ function finishInfoExam() {
     if (infoQuizArea) infoQuizArea.classList.add('hidden');
     if (infoResultArea) infoResultArea.classList.remove('hidden');
 
+    const bank = infoActiveBank.length ? infoActiveBank : (typeof infoQuestions !== 'undefined' ? infoQuestions : []);
     let score = 0;
-    if (typeof infoQuestions !== 'undefined') {
-        infoQuestions.forEach((q, i) => {
-            if (infoUserAnswers[i] === q.answer) {
+
+    if (bank.length) {
+        bank.forEach((q, i) => {
+            const correctAns = q.correct ?? q.answer;
+            if (infoUserAnswers[i] === correctAns) {
                 score++;
             }
         });
     }
 
     const scoreDisplay = document.getElementById('info-score-display');
-    if (scoreDisplay && typeof infoQuestions !== 'undefined') {
-        scoreDisplay.textContent = `${score} / ${infoQuestions.length}`;
+    if (scoreDisplay && bank.length) {
+        scoreDisplay.textContent = `${score} / ${bank.length}`;
     }
 }
 
@@ -898,6 +952,7 @@ let ctbCurrentIndex = 0;
 let ctbUserAnswers = [];
 let ctbTimerInterval;
 let ctbTotalSeconds = 2 * 60 * 60; // 2 horas
+let ctbActiveBank = []; // Banco ativo com as questões embaralhadas da sessão
 
 const startCtbBtn = document.getElementById('start-ctb-btn');
 
@@ -912,14 +967,19 @@ if (startCtbBtn) {
             return;
         }
 
+        // Embaralha as questões de forma aleatória toda vez que inicia
+        ctbActiveBank = shuffleArray(ctbBank);
+
         const ctbIntro = document.getElementById('ctb-intro');
         const ctbQuizArea = document.getElementById('ctb-quiz-area');
+        const ctbResultArea = document.getElementById('ctb-result-area');
 
         if (ctbIntro) ctbIntro.classList.add('hidden');
+        if (ctbResultArea) ctbResultArea.classList.add('hidden');
         if (ctbQuizArea) ctbQuizArea.classList.remove('hidden');
 
         ctbCurrentIndex = 0;
-        ctbUserAnswers = new Array(ctbBank.length).fill(null);
+        ctbUserAnswers = new Array(ctbActiveBank.length).fill(null);
 
         loadCtbQuestion(ctbCurrentIndex);
         buildCtbGrid();
@@ -928,7 +988,7 @@ if (startCtbBtn) {
 }
 
 function loadCtbQuestion(index) {
-    const ctbBank = (typeof simuladoCTB !== 'undefined' && simuladoCTB.length) ? simuladoCTB : ctbQuestions;
+    const ctbBank = ctbActiveBank.length ? ctbActiveBank : ((typeof simuladoCTB !== 'undefined') ? simuladoCTB : ctbQuestions);
     if (!ctbBank || !ctbBank[index]) return;
 
     const q = ctbBank[index];
@@ -952,7 +1012,6 @@ function loadCtbQuestion(index) {
             const btn = document.createElement('button');
             btn.classList.add('option-btn');
 
-            // Destaca a alternativa correta e a errada se o usuário já respondeu
             if (userAnswer !== null) {
                 if (i === correctIndex) {
                     btn.classList.add('correta');
@@ -968,7 +1027,6 @@ function loadCtbQuestion(index) {
         });
     }
 
-    // Renderiza a caixinha de feedback e explicação abaixo das opções
     renderCtbFeedback(q, userAnswer);
 
     if (ctbPrevBtn) ctbPrevBtn.disabled = index === 0;
@@ -981,7 +1039,6 @@ function selectCtbOption(optionIndex) {
     updateCtbGridItem(ctbCurrentIndex);
 }
 
-// Nova função para gerir o feedback visual do CTB
 function renderCtbFeedback(q, userAnswer) {
     const feedbackBox = document.getElementById('ctb-feedback-box');
     const feedbackStatus = document.getElementById('ctb-feedback-status');
@@ -1019,7 +1076,7 @@ function renderCtbFeedback(q, userAnswer) {
 const ctbNextBtn = document.getElementById('ctb-next-q-btn');
 if (ctbNextBtn) {
     ctbNextBtn.addEventListener('click', () => {
-        const ctbBank = (typeof simuladoCTB !== 'undefined') ? simuladoCTB : ctbQuestions;
+        const ctbBank = ctbActiveBank.length ? ctbActiveBank : ((typeof simuladoCTB !== 'undefined') ? simuladoCTB : ctbQuestions);
         if (!ctbBank) return;
 
         if (ctbCurrentIndex < ctbBank.length - 1) {
@@ -1044,7 +1101,7 @@ if (ctbPrevBtn) {
 }
 
 function buildCtbGrid() {
-    const ctbBank = (typeof simuladoCTB !== 'undefined') ? simuladoCTB : ctbQuestions;
+    const ctbBank = ctbActiveBank.length ? ctbActiveBank : ((typeof simuladoCTB !== 'undefined') ? simuladoCTB : ctbQuestions);
     const ctbQuestionGrid = document.getElementById('ctb-question-grid');
     if (!ctbQuestionGrid || !ctbBank) return;
 
@@ -1117,7 +1174,7 @@ function finishCtbExam() {
     if (ctbQuizArea) ctbQuizArea.classList.add('hidden');
     if (ctbResultArea) ctbResultArea.classList.remove('hidden');
 
-    const ctbBank = (typeof simuladoCTB !== 'undefined') ? simuladoCTB : ctbQuestions;
+    const ctbBank = ctbActiveBank.length ? ctbActiveBank : ((typeof simuladoCTB !== 'undefined') ? simuladoCTB : ctbQuestions);
     let score = 0;
 
     if (ctbBank) {
@@ -1169,18 +1226,22 @@ let lei1416CurrentIndex = 0;
 let lei1416UserAnswers = [];
 let lei1416TimerInterval;
 let lei1416TotalSeconds = 2 * 60 * 60; // 2 horas
+let lei1416ActiveBank = []; // Banco ativo com as questões embaralhadas da sessão
 
 const startLei1416Btn = document.getElementById('start-lei1416-btn');
 
 if (startLei1416Btn) {
     startLei1416Btn.addEventListener('click', () => {
-        // Usa a variável correta que está declarada no teu lei1416-50q.js
-        const lei1416Bank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
+        // Obtém o banco base original
+        const baseBank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
 
-        if (!lei1416Bank.length) {
+        if (!baseBank.length) {
             alert("O banco de questões da Lei 1416 não foi encontrado. Verifique se o arquivo lei1416-50q.js está carregado.");
             return;
         }
+
+        // Embaralha as questões de forma aleatória toda vez que clica em iniciar
+        lei1416ActiveBank = shuffleArray(baseBank);
 
         const lei1416Intro = document.getElementById('lei1416-intro');
         const lei1416QuizArea = document.getElementById('lei1416-quiz-area');
@@ -1191,7 +1252,7 @@ if (startLei1416Btn) {
         if (lei1416QuizArea) lei1416QuizArea.classList.remove('hidden');
 
         lei1416CurrentIndex = 0;
-        lei1416UserAnswers = new Array(lei1416Bank.length).fill(null);
+        lei1416UserAnswers = new Array(lei1416ActiveBank.length).fill(null);
 
         loadLei1416Question(lei1416CurrentIndex);
         if (typeof buildLei1416Grid === 'function') buildLei1416Grid();
@@ -1200,7 +1261,7 @@ if (startLei1416Btn) {
 }
 
 function loadLei1416Question(index) {
-    const lei1416Bank = (typeof lei1416Quiz !== 'undefined') ? lei1416Quiz : ((typeof simuladoLei1416 !== 'undefined') ? simuladoLei1416 : []);
+    const lei1416Bank = lei1416ActiveBank;
     const q = lei1416Bank[index];
     if (!q) return;
 
