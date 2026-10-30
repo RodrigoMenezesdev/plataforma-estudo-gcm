@@ -1484,3 +1484,278 @@ if (lei1416RestartBtn) {
         document.getElementById('lei1416-intro')?.classList.remove('hidden');
     });
 }
+
+// ==========================================
+// MOTOR DO SIMULADO LEGISLAÇÃO ESPECÍFICA (200Q)
+// ==========================================
+
+let especificasCurrentIndex = 0;
+let especificasUserAnswers = [];
+let especificasTimerInterval;
+let especificasTotalSeconds = 1 * 60 * 60; // 1 hora
+let especificasActiveBank = []; // Banco ativo filtrado e embaralhado
+
+// Listener para os botões de escolha de tópicos no ecrã inicial
+const especificasTopicButtons = document.querySelectorAll('.topic-btn');
+
+especificasTopicButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const selectedTopic = e.currentTarget.getAttribute('data-topic');
+
+        if (typeof especificasQuestions === 'undefined' || !especificasQuestions.length) {
+            alert("O banco de questões de Legislação Específica não foi encontrado.");
+            return;
+        }
+
+        let filteredQuestions = [];
+
+        if (selectedTopic === 'all') {
+            // Se for o Simulado Geral, usa todas as 200 questões disponíveis
+            filteredQuestions = [...especificasQuestions];
+        } else {
+            // Se for um tópico específico, filtra e limita estritamente a 40 questões
+            let topicQuestions = especificasQuestions.filter(q => q.topic === selectedTopic);
+            let shuffledTopic = shuffleArray(topicQuestions);
+            filteredQuestions = shuffledTopic.slice(0, 40);
+        }
+
+        if (!filteredQuestions.length) {
+            alert("Ainda não há questões cadastradas para este tópico específico. Tente o Simulado Geral!");
+            return;
+        }
+
+        // Embaralha o banco ativo final (seja o geral de 200 ou o específico de 40)
+        especificasActiveBank = shuffleArray(filteredQuestions);
+
+        const intro = document.getElementById('especificas-intro');
+        const quizArea = document.getElementById('especificas-quiz-area');
+        const resultArea = document.getElementById('especificas-result-area');
+
+        if (intro) intro.classList.add('hidden');
+        if (resultArea) resultArea.classList.add('hidden');
+        if (quizArea) quizArea.classList.remove('hidden');
+
+        especificasCurrentIndex = 0;
+        especificasUserAnswers = new Array(especificasActiveBank.length).fill(null);
+
+        loadEspecificasQuestion(especificasCurrentIndex);
+        buildEspecificasGrid();
+        startEspecificasTimer();
+    });
+});
+
+function loadEspecificasQuestion(index) {
+    const bank = especificasActiveBank.length ? especificasActiveBank : especificasQuestions;
+    if (!bank || !bank[index]) return;
+
+    const q = bank[index];
+    const qNum = document.getElementById('especificas-q-number');
+    const qText = document.getElementById('especificas-q-text');
+    const optionsContainer = document.getElementById('especificas-options-container');
+    const prevBtn = document.getElementById('especificas-prev-q-btn');
+    const nextBtn = document.getElementById('especificas-next-q-btn');
+
+    if (qNum) qNum.textContent = `Questão ${index + 1} de ${bank.length}`;
+    if (qText) qText.textContent = q.question;
+
+    const userAnswer = especificasUserAnswers[index];
+
+    if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        const correctIndex = q.correct ?? q.answer;
+
+        q.options.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.classList.add('option-btn');
+
+            if (userAnswer !== null) {
+                if (i === correctIndex) btn.classList.add('correta');
+                if (i === userAnswer && userAnswer !== correctIndex) btn.classList.add('errada');
+            }
+
+            btn.innerHTML = `<strong>${letters[i]})</strong> ${opt}`;
+            btn.addEventListener('click', () => selectEspecificasOption(i));
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    renderEspecificasFeedback(q, userAnswer);
+
+    if (prevBtn) prevBtn.disabled = index === 0;
+    if (nextBtn) nextBtn.textContent = index === bank.length - 1 ? "Rever Prova" : "Próxima ➔";
+}
+
+function selectEspecificasOption(optionIndex) {
+    especificasUserAnswers[especificasCurrentIndex] = optionIndex;
+    loadEspecificasQuestion(especificasCurrentIndex);
+    updateEspecificasGridItem(especificasCurrentIndex);
+}
+
+function renderEspecificasFeedback(q, userAnswer) {
+    const feedbackBox = document.getElementById('especificas-feedback-box');
+    const feedbackStatus = document.getElementById('especificas-feedback-status');
+    const feedbackText = document.getElementById('especificas-feedback-text');
+
+    if (!feedbackBox) return;
+
+    if (userAnswer === null) {
+        feedbackBox.classList.add('hidden');
+        return;
+    }
+
+    feedbackBox.classList.remove('hidden');
+    const correctIndex = q.correct ?? q.answer;
+
+    if (userAnswer === correctIndex) {
+        feedbackBox.className = 'feedback-box correto';
+        if (feedbackStatus) feedbackStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> Resposta Correta!';
+    } else {
+        feedbackBox.className = 'feedback-box incorreto';
+        const correctLetter = String.fromCharCode(65 + correctIndex);
+        if (feedbackStatus) feedbackStatus.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Resposta Incorreta. A alternativa certa é a <strong>${correctLetter}</strong>.`;
+    }
+
+    if (feedbackText) {
+        feedbackText.innerText = q.explanation || "Sem explicação cadastrada.";
+    }
+}
+
+const especificasNextBtn = document.getElementById('especificas-next-q-btn');
+if (especificasNextBtn) {
+    especificasNextBtn.addEventListener('click', () => {
+        const bank = especificasActiveBank.length ? especificasActiveBank : especificasQuestions;
+        if (especificasCurrentIndex < bank.length - 1) {
+            especificasCurrentIndex++;
+            loadEspecificasQuestion(especificasCurrentIndex);
+        } else {
+            if (confirm("Deseja finalizar e ver o resultado da prova?")) {
+                finishEspecificasExam();
+            }
+        }
+    });
+}
+
+const especificasPrevBtn = document.getElementById('especificas-prev-q-btn');
+if (especificasPrevBtn) {
+    especificasPrevBtn.addEventListener('click', () => {
+        if (especificasCurrentIndex > 0) {
+            especificasCurrentIndex--;
+            loadEspecificasQuestion(especificasCurrentIndex);
+        }
+    });
+}
+
+function buildEspecificasGrid() {
+    const bank = especificasActiveBank.length ? especificasActiveBank : especificasQuestions;
+    const grid = document.getElementById('especificas-question-grid');
+    if (!grid || !bank.length) return;
+
+    grid.innerHTML = '';
+    for (let i = 0; i < bank.length; i++) {
+        const box = document.createElement('button');
+        box.classList.add('q-dot');
+        box.textContent = i + 1;
+        box.id = `especificas-grid-${i}`;
+        if (especificasUserAnswers[i] !== null) box.classList.add('answered');
+        box.addEventListener('click', () => {
+            especificasCurrentIndex = i;
+            loadEspecificasQuestion(especificasCurrentIndex);
+        });
+        grid.appendChild(box);
+    }
+}
+
+function updateEspecificasGridItem(index) {
+    const box = document.getElementById(`especificas-grid-${index}`);
+    if (box) {
+        if (especificasUserAnswers[index] !== null) {
+            box.classList.add('answered');
+        } else {
+            box.classList.remove('answered');
+        }
+    }
+}
+
+function startEspecificasTimer() {
+    clearInterval(especificasTimerInterval);
+    especificasTotalSeconds = 1 * 60 * 60;
+    const timerDisplay = document.getElementById('especificas-timer');
+    if (!timerDisplay) return;
+
+    especificasTimerInterval = setInterval(() => {
+        if (especificasTotalSeconds <= 0) {
+            clearInterval(especificasTimerInterval);
+            alert("O tempo do simulado esgotou!");
+            finishEspecificasExam();
+            return;
+        }
+
+        especificasTotalSeconds--;
+        const hours = Math.floor(especificasTotalSeconds / 3600);
+        const minutes = Math.floor((especificasTotalSeconds % 3600) / 60);
+        const seconds = especificasTotalSeconds % 60;
+
+        timerDisplay.innerHTML = `<i class="fa-solid fa-clock"></i> ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+}
+
+const especificasFinishBtn = document.getElementById('especificas-finish-btn');
+if (especificasFinishBtn) {
+    especificasFinishBtn.addEventListener('click', () => {
+        if (confirm("Tem certeza de que deseja finalizar o simulado?")) {
+            finishEspecificasExam();
+        }
+    });
+}
+
+function finishEspecificasExam() {
+    clearInterval(especificasTimerInterval);
+    const quizArea = document.getElementById('especificas-quiz-area');
+    const resultArea = document.getElementById('especificas-result-area');
+
+    if (quizArea) quizArea.classList.add('hidden');
+    if (resultArea) resultArea.classList.remove('hidden');
+
+    const bank = especificasActiveBank.length ? especificasActiveBank : especificasQuestions;
+    let score = 0;
+
+    if (bank.length) {
+        bank.forEach((q, i) => {
+            const correctAns = q.correct ?? q.answer;
+            if (especificasUserAnswers[i] === correctAns) score++;
+        });
+    }
+
+    const scoreDisplay = document.getElementById('especificas-score-display');
+    if (scoreDisplay && bank.length) {
+        scoreDisplay.textContent = `${score} / ${bank.length}`;
+    }
+}
+
+// Botão Sair corrigido para retornar à tela de escolha de tópicos
+const especificasExitBtn = document.getElementById('especificas-exit-btn');
+if (especificasExitBtn) {
+    especificasExitBtn.addEventListener('click', () => {
+        if (confirm("Deseja realmente sair do simulado? O seu progresso atual será reiniciado.")) {
+            clearInterval(especificasTimerInterval);
+            const quizArea = document.getElementById('especificas-quiz-area');
+            const resultArea = document.getElementById('especificas-result-area');
+            const intro = document.getElementById('especificas-intro');
+
+            if (quizArea) quizArea.classList.add('hidden');
+            if (resultArea) resultArea.classList.add('hidden');
+            if (intro) intro.classList.remove('hidden');
+        }
+    });
+}
+
+const especificasRestartBtn = document.getElementById('especificas-restart-btn');
+if (especificasRestartBtn) {
+    especificasRestartBtn.addEventListener('click', () => {
+        const resultArea = document.getElementById('especificas-result-area');
+        const intro = document.getElementById('especificas-intro');
+        if (resultArea) resultArea.classList.add('hidden');
+        if (intro) intro.classList.remove('hidden');
+    });
+}

@@ -23,7 +23,7 @@
     <header class="app-header">
         <div class="logo-area">
             <i class="fa-solid fa-shield-halved"></i>
-            <h1>GCM Maricá - Plataforma de Estudos</h1>
+            <h1>GCM-São Gonçalo - Plataforma de Estudos</h1>
         </div>
         <nav class="nav-tabs">
             <button class="tab-btn active" data-target="simulado-section"><i class="fa-solid fa-pen-to-square"></i>
@@ -49,6 +49,9 @@
             </button>
             <button class="tab-btn" data-target="lei1416-section">
                 <i class="fa-solid fa-landmark"></i> Simulado Lei 1416 (50Q)
+            </button>
+            <button class="tab-btn" data-target="especificas-section">
+                <i class="fa-solid fa-scale-balanced"></i> Simulado Legislação Específica (200Q)
             </button>
         </nav>
     </header>
@@ -694,6 +697,115 @@
                 <button id="lei1416-restart-btn" class="btn primary-btn">Tentar Novamente</button>
             </div>
         </section>
+
+        <!-- ========================================== -->
+        <!-- SECÇÃO: SIMULADO LEGISLAÇÃO ESPECÍFICA (200Q) -->
+        <!-- ========================================== -->
+        <section id="especificas-section" class="content-section hidden">
+            <div class="simulado-header">
+                <h2>Simulado Legislação Específica (200Q) - Guarda Municipal</h2>
+                <div id="especificas-timer" class="timer-box"><i class="fa-solid fa-clock"></i> 01:00:00</div>
+            </div>
+
+            <!-- Ecrã Inicial / Introdução com Escolha de Tópicos Completa -->
+            <div id="especificas-intro" class="intro-card card">
+                <h3>Escolha o Tópico de Estudo - Edital Guarda de São Gonçalo</h3>
+                <p>Selecione abaixo qual o bloco de matérias do edital deseja treinar neste simulado:</p>
+
+                <div class="topic-selection-buttons"
+                    style="display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0;">
+                    <button class="btn topic-btn" data-topic="all"
+                        style="background-color: #3182ce; color: white; text-align: left; padding: 1rem; border-radius: 8px; border: none; cursor: pointer; font-weight: 600;">
+                        <i class="fa-solid fa-layer-group"></i> Simulado Geral (Todas as Matérias do Edital)
+                    </button>
+                    <button class="btn topic-btn" data-topic="legislacao-guarda"
+                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                        <i class="fa-solid fa-shield-halved"></i> 1. Legislação da Guarda Municipal (Leis 13.022, 13.675
+                        e Estatutos)
+                    </button>
+                    <button class="btn topic-btn" data-topic="extravagante"
+                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                        <i class="fa-solid fa-scale-balanced"></i> 2. Legislação Penal Extravagante (Abuso, Hediondos,
+                        Tortura, ECA, etc.)
+                    </button>
+                    <button class="btn topic-btn" data-topic="constitucional-administrativo"
+                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                        <i class="fa-solid fa-landmark"></i> 3. Direito Constitucional & Administrativo (CF/88 e LIA)
+                    </button>
+                    <button class="btn topic-btn" data-topic="penal-processual"
+                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                        <i class="fa-solid fa-gavel"></i> 4. Direito Penal & Processual Penal (CP e Lei nº 9.099/95)
+                    </button>
+                    <button class="btn topic-btn" data-topic="estatutos-municipais"
+                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                        <i class="fa-solid fa-book-bookmark"></i> 5. Leis Municipais de São Gonçalo (Estatutos e Regime
+                        Próprio)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Área da Prova / Quiz -->
+            <div id="especificas-quiz-area" class="quiz-container hidden">
+                <div class="quiz-layout">
+                    <div class="question-card card">
+                        <div class="question-header">
+                            <span id="especificas-q-tag" class="badge">Legislação Específica</span>
+                            <span id="especificas-q-number">Questão 1 de 200</span>
+                        </div>
+                        <h3 id="especificas-q-text">Enunciado da questão aparecerá aqui...</h3>
+
+                        <div id="especificas-options-container" class="options-list">
+                            <!-- Opções geradas via JS -->
+                        </div>
+
+                        <!-- Caixinha de Feedback / Explicação -->
+                        <div id="especificas-feedback-box" class="feedback-box hidden">
+                            <div id="especificas-feedback-status" class="feedback-status"></div>
+                            <div id="especificas-feedback-text" class="feedback-text"></div>
+                        </div>
+
+                        <div class="quiz-nav-buttons">
+                            <button id="especificas-exit-btn" class="btn danger-btn"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
+                            <div>
+                                <button id="especificas-prev-q-btn" class="btn secondary-btn"><i
+                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
+                                <button id="especificas-next-q-btn" class="btn primary-btn">Próxima <i
+                                        class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gabarito Lateral -->
+                    <div class="gabarito-card card">
+                        <h4>Gabarito</h4>
+
+                        <!-- Container com scroll apenas para o gabarito -->
+                        <div id="especificas-gabarito-list">
+                            <div id="especificas-question-grid" class="question-grid">
+                                <!-- Grid gerado via JS -->
+                            </div>
+                        </div>
+
+                        <button id="especificas-finish-btn" class="btn danger-btn btn-block">
+                            <i class="fa-solid fa-flag-checkered"></i> Finalizar Prova
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ecrã de Resultado -->
+            <div id="especificas-result-area" class="result-card card hidden">
+                <h3>Resultado do Simulado</h3>
+                <div class="score-display-box">
+                    <span id="especificas-score-display">0 / 200</span>
+                </div>
+                <p>Parabéns por concluir o treino de Legislação Específica!</p>
+                <button id="especificas-restart-btn" class="btn primary-btn">
+                    <i class="fa-solid fa-rotate-right"></i> Tentar Novamente
+                </button>
+            </div>
+        </section>
     </main>
 
     <!-- Scripts dos Simulados -->
@@ -704,6 +816,7 @@
     <script src="especificas-100q.js"></script>
     <script src="flashcards.js"></script>
     <script src="lei1416-50q.js"></script>
+    <script src="especificas-200q.js"></script>
     <script src="script.js"></script>
 </body>
 
