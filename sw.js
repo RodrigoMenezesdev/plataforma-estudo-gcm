@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gcm-marica-v2';
+const CACHE_NAME = 'gcm-saogoncalo-v1';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -6,7 +6,8 @@ const ASSETS_TO_CACHE = [
     './script.js',
     './manifest.json',
     './icon-192.png',
-    './icon-512.png'
+    './icon-512.png',
+    './icon-512.ico'
 ];
 
 // Evento de Instalação
@@ -19,7 +20,7 @@ self.addEventListener('install', (e) => {
     );
 });
 
-// Evento de Ativação (limpa caches antigos)
+// Evento de Ativação (limpa caches antigos de Maricá)
 self.addEventListener('activate', (e) => {
     e.waitUntil(
         caches.keys().then((keyList) => {
@@ -43,10 +44,8 @@ self.addEventListener('fetch', (e) => {
                 return cachedResponse;
             }
             return fetch(e.request).then((response) => {
-                // Opcional: faz cache dinâmico de PDFs ou outros recursos sob demanda
                 return response;
             }).catch(() => {
-                // Fallback caso esteja offline e o recurso não esteja em cache
                 if (e.request.mode === 'navigate') {
                     return caches.match('./index.html');
                 }
