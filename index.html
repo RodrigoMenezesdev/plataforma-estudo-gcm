@@ -27,7 +27,7 @@
         </div>
         <nav class="nav-tabs">
             <button class="tab-btn active" data-target="simulado-section"><i class="fa-solid fa-pen-to-square"></i>
-                Simulado (50Q)</button>
+                Simulado (80Q)</button>
             <button class="tab-btn" data-target="flashcards-section"><i class="fa-solid fa-clone"></i>
                 Flashcards</button>
             <button class="tab-btn" data-target="resumos-section"><i class="fa-solid fa-book-open"></i> Resumos &
@@ -36,9 +36,9 @@
                 Desempenho</button>
             <button class="tab-btn" data-target="super-simulado-section"><i class="fa-solid fa-list-check"></i>
                 Super Simulado (100Q)</button>
-            <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas Anteriores
-                e PDFs de
-                Leis</button>
+            <button class="tab-btn" data-target="provas-section">
+                <i class="fa-solid fa-file-pdf"></i> Provas Anteriores, Gabarito e Leis
+            </button>
             <button class="tab-btn" data-target="rlm-section">
                 <i class="fa-solid fa-calculator"></i> Simulado RLM (50Q)
             </button>
@@ -47,769 +47,766 @@
             <button class="tab-btn" data-target="ctb-section">
                 <i class="fa-solid fa-car"></i> Simulado CTB (50Q)
             </button>
-            <button class="tab-btn" data-target="lei1416-section">
-                <i class="fa-solid fa-landmark"></i> Simulado Lei 1416 (50Q)
-            </button>
+
             <button class="tab-btn" data-target="especificas-section">
                 <i class="fa-solid fa-scale-balanced"></i> Simulado Legislação Específica (200Q)
             </button>
         </nav>
     </header>
 
-    <!-- Conteúdo Principal -->
-    <main class="app-container">
+    <!-- Seção: Simulado -->
+    <section id="simulado-section" class="content-section active">
+        <div class="simulado-top-bar">
+            <h2>Simulado Oficial SELECON</h2>
+            <div id="timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 03:30:00</div>
+        </div>
 
-        <!-- Seção: Simulado -->
-        <section id="simulado-section" class="content-section active">
-            <div class="simulado-top-bar">
-                <h2>Simulado Oficial COSEAC</h2>
-                <div id="timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 04:00:00</div>
+        <!-- Introdução Unificada com a Prova Completa e Acesso ao PDF -->
+        <div id="simulado-intro" class="card">
+            <h3 style="margin-bottom: 12px; color: #1e293b;"><i class="fa-solid fa-file-lines"></i> Prova Oficial
+                Completa - Guarda Municipal de São Gonçalo (SELECON - 2020)</h3>
+            <p style="margin-bottom: 12px; color: #475569; font-size: 0.95rem;">
+                Simulado completo baseado no padrão da banca SELECON (2020): 15 questões de Língua Portuguesa, 20 de
+                Noções de Direito, 15 de Legislação Extravagante, 20 de Conhecimentos Específicos e 10 de Informática.
+                Consulte o resumo abaixo ou abra o documento oficial completo.
+            </p>
+
+            <!-- Caixa com barra de rolagem contendo as informações e estrutura do edital -->
+            <div class="prova-scroll-box"
+                style="max-height: 200px; overflow-y: auto; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; font-size: 0.9rem; line-height: 1.6; color: #334155; margin-bottom: 15px;">
+                <h4 style="color: #1e293b; margin-bottom: 6px;">SELECON — PREFEITURA MUNICIPAL DE SÃO GONÇALO / RJ</h4>
+                <h5 style="color: #475569; margin-bottom: 10px;">EDITAL Nº 003/PMSG/2020 — GUARDA MUNICIPAL NÍVEL II
+                </h5>
+
+                <p><strong>Cargo:</strong> GUARDA MUNICIPAL NÍVEL II | <strong>Duração da Prova:</strong> 3h30min</p>
+
+                <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 8px 0;">
+
+                <p><strong>Instruções ao candidato:</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 8px;">
+                    <li>Ao receber o Caderno de Questões, confira se o material está em ordem e com 80 questões sem
+                        falhas.</li>
+                    <li>O caderno contém 80 questões objetivas e espaços para rascunho.</li>
+                    <li>Cada questão apresenta quatro opções de resposta (A, B, C e D), sendo apenas uma correta.</li>
+                    <li>O candidato poderá entregar o cartão de respostas e retirar-se da sala após decorrida 1 (uma)
+                        hora de prova.</li>
+                    <li>Utilize caneta esferográfica de tinta na cor azul ou preta.</li>
+                </ul>
+
+                <p style="margin-top: 8px;"><strong>Frase para o exame grafotécnico:</strong> <em>"A Segurança Pública é
+                        uma conquista da cidadania."</em></p>
+
+                <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 8px 0;">
+
+                <p><strong>Estrutura da Prova (80 Questões):</strong></p>
+                <p>- <strong>Língua Portuguesa (15Q - 01 a 15):</strong> Interpretação de texto, sintaxe, crase e
+                    gramática.</p>
+                <p>- <strong>Noções de Direito (20Q - 16 a 35):</strong> Direito Constitucional, Administrativo, Penal e
+                    Processual Penal.</p>
+                <p>- <strong>Legislação Extravagante (15Q - 36 a 50):</strong> Leis de Crimes Hediondos, Abuso de
+                    Autoridade, ECA, Drogas, Maria da Penha, etc.</p>
+                <p>- <strong>Conhecimentos Específicos (20Q - 51 a 70):</strong> Lei 13.675/2018 (Sinesp), Estatuto da
+                    GCM (Lei 13.022/14) e Estatuto dos Servidores de São Gonçalo (Lei 050/91).</p>
+                <p>- <strong>Informática (10Q - 71 a 80):</strong> Hardware, Windows 10, Linux Ubuntu, Word 2016, Excel,
+                    Redes e Segurança.</p>
             </div>
 
-            <!-- Introdução Unificada com a Prova Completa e Acesso ao PDF -->
-            <div id="simulado-intro" class="card">
-                <h3 style="margin-bottom: 12px; color: #1e293b;"><i class="fa-solid fa-file-lines"></i> Prova Oficial
-                    Completa - Guarda Municipal de Maricá (COSEAC/UFF - 2019)</h3>
-                <p style="margin-bottom: 12px; color: #475569; font-size: 0.95rem;">
-                    Simulado completo baseado no padrão da banca COSEAC/UFF (2019): 10 questões de Português, 10 de
-                    Raciocínio Lógico/Informática e 30 de Conhecimentos Específicos. Consulte o resumo abaixo ou abra o
-                    documento oficial completo.
+            <!-- Botões de Ação -->
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button id="start-simulado-btn" class="btn primary-btn" style="flex: 1;"><i
+                        class="fa-solid fa-play"></i> Iniciar Prova Oficial (80Q)</button>
+
+                <!-- Botão para abrir o PDF completo -->
+                <a href="guarda_municipal.pdf" target="_blank" class="btn secondary-btn"
+                    style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fa-solid fa-file-pdf"></i> Abrir PDF Completo (Prova)
+                </a>
+            </div>
+        </div>
+
+        <!-- Área do Quiz com Leitor de PDF Integrado -->
+        <div id="simulado-quiz-area" class="hidden">
+
+            <!-- Botão de Acesso Direto ao PDF Oficial em Nova Aba -->
+            <div style="margin-bottom: 15px;">
+                <a href="guarda_municipal.pdf" target="_blank" class="btn secondary-btn"
+                    style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-file-pdf"></i> Consultar Prova Oficial (PDF Completo)
+                </a>
+            </div>
+
+            <!-- Container do PDF Integrado (Inicialmente Oculto) -->
+            <div id="pdf-viewer-container" class="card hidden"
+                style="margin-bottom: 20px; border: 2px solid #3182ce; padding: 10px;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
+                    <span style="font-weight: bold; color: #1e293b;"><i class="fa-solid fa-book-open"></i> Caderno
+                        de Questões Oficial - SELECON 2020</span>
+                    <button id="close-pdf-btn" class="btn danger-btn" style="padding: 5px 12px; font-size: 0.85rem;">
+                        <i class="fa-solid fa-xmark"></i> Fechar PDF
+                    </button>
+                </div>
+                <iframe src="guarda_municipal.pdf"
+                    style="width: 100%; height: 450px; border: none; border-radius: 6px;"></iframe>
+            </div>
+
+            <div class="quiz-layout">
+                <div class="question-card card">
+                    <div class="q-meta">
+                        <span id="q-subject-badge" class="badge">Disciplina</span>
+                        <span id="q-number">Questão 1 de 80</span>
+                    </div>
+                    <h3 id="q-text">Enunciado da questão aparecerá aqui...</h3>
+                    <div id="options-container" class="options-list">
+                        <!-- Opções geradas via JS -->
+                    </div>
+                    <div class="quiz-nav-buttons">
+                        <!-- Botão Sair idêntico ao dos outros simulados -->
+                        <button id="exit-simulado-btn" class="btn danger-btn"><i
+                                class="fa-solid fa-right-from-bracket"></i> Sair</button>
+                        <button id="prev-q-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                            Anterior</button>
+                        <button id="next-q-btn" class="btn primary-btn">Próxima <i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="quiz-sidebar card">
+                    <h4>Gabarito de Questões</h4>
+                    <div id="question-grid" class="q-grid">
+                        <!-- Grade de 1 a 80 gerada via JS -->
+                    </div>
+                    <button id="finish-simulado-btn" class="btn danger-btn"><i class="fa-solid fa-flag-checkered"></i>
+                        Finalizar Prova</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="simulado-result-area" class="hidden card text-center">
+            <h2>Resultado do Simulado</h2>
+            <div id="score-display" class="score-badge">0 / 80</div>
+            <p id="score-feedback">Parabéns por concluir!</p>
+            <button id="restart-simulado-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i>
+                Refazer Simulado</button>
+        </div>
+    </section>
+
+    <!-- Seção: Flashcards -->
+    <section id="flashcards-section" class="content-section">
+        <h2>Flashcards de Memorização Ativa</h2>
+        <div class="flashcard-container">
+            <div id="flashcard" class="flashcard card">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <span id="fc-category" class="badge">Estatuto das Guardas</span>
+                        <h3 id="fc-question">Qual é o princípio mínimo de atuação da Guarda Municipal conforme a Lei
+                            13.022/14?</h3>
+                        <span class="flip-hint"><i class="fa-solid fa-rotate"></i> Clique para virar o cartão</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <h3>Resposta:</h3>
+                        <p id="fc-answer">I - Proteção dos direitos humanos fundamentais... II - Preservação da
+                            vida, redução do sofrimento e diminuição das perdas...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flashcard-controls">
+                <button id="fc-prev" class="btn secondary-btn"><i class="fa-solid fa-chevron-left"></i>
+                    Anterior</button>
+                <button id="fc-flip" class="btn primary-btn"><i class="fa-solid fa-repeat"></i> Virar
+                    Cartão</button>
+                <button id="fc-next" class="btn secondary-btn">Próximo <i
+                        class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Resumos Teóricos & Bizus -->
+    <section id="resumos-section" class="content-section">
+        <h2>Resumos Teóricos & Bizus Estratégicos (COSEAC)</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Pontos de atenção e macetes de memorização
+            focados no edital da Guarda Municipal de Maricá:</p>
+
+        <div class="materias-grid">
+            <!-- Card 1: Estatuto -->
+            <div class="card" style="padding: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                    <span class="badge" style="background-color: #e3f2fd; color: #1565c0;"><i
+                            class="fa-solid fa-star"></i> Alto Rendimento</span>
+                    <small style="color: var(--text-muted);">Lei 13.022/14</small>
+                </div>
+                <h3><i class="fa-solid fa-scale-balanced" style="color: #1565c0;"></i> Estatuto das Guardas</h3>
+                <p style="margin: 0.8rem 0; font-size: 0.95rem;">
+                    <strong>Artigo Chave (Art. 3º):</strong> Princípios Mínimos (Proteção dos Direitos Humanos,
+                    Preservação da vida, Uso progressivo da força).
                 </p>
-
-                <!-- Caixa com barra de rolagem contendo as informações e estrutura do edital -->
-                <div class="prova-scroll-box"
-                    style="max-height: 200px; overflow-y: auto; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; font-size: 0.9rem; line-height: 1.6; color: #334155; margin-bottom: 15px;">
-                    <h4 style="color: #1e293b; margin-bottom: 6px;">UFF - UNIVERSIDADE FEDERAL FLUMINENSE</h4>
-                    <h5 style="color: #475569; margin-bottom: 10px;">COSEAC — PREFEITURA MUNICIPAL DE MARICÁ (EDITAL Nº
-                        2/2019)</h5>
-
-                    <p><strong>Cargo:</strong> GUARDA MUNICIPAL | <strong>Nível:</strong> MÉDIO</p>
-
-                    <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 8px 0;">
-
-                    <p><strong>Instruções ao candidato (Parte integrante do Edital - subitem 12.2):</strong></p>
-                    <ul style="margin-left: 20px; margin-bottom: 8px;">
-                        <li>Ao receber o Caderno de Questões, confira se o cargo indicado é aquele para o qual está
-                            concorrendo.</li>
-                        <li>O caderno contém 50 questões objetivas e espaços para rascunho.</li>
-                        <li>Cada questão apresenta cinco opções de resposta (A, B, C, D, E), sendo apenas uma correta.
-                        </li>
-                        <li>O tempo disponível para a realização da prova é de no mínimo 1 hora e 30 minutos e no máximo
-                            4 horas.</li>
-                        <li>Utilize somente caneta esferográfica de corpo transparente com tinta azul ou preta.</li>
-                    </ul>
-
-                    <p style="margin-top: 8px;"><strong>Frase para o exame grafotécnico:</strong> <em>"A coragem cresce
-                            com a ocasião. (William Shakespeare)"</em></p>
-
-                    <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 8px 0;">
-
-                    <p><strong>Estrutura da Prova (16 Páginas):</strong></p>
-                    <p>- <strong>Língua Portuguesa (10Q):</strong> Textos (Texto 1 e Texto 2 - Guarda Belo), coesão,
-                        sintaxe e gramática.</p>
-                    <p>- <strong>Raciocínio Lógico & Informática (10Q):</strong> Matemática financeira, sequências,
-                        conjuntos, Excel, Linux e Windows.</p>
-                    <p>- <strong>Conhecimentos Específicos (30Q):</strong> Direito Administrativo, Constitucional,
-                        Penal, Legislação GCM (Lei 13.022/14), CTB e Direitos Humanos.</p>
-                </div>
-
-                <!-- Botões de Ação -->
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button id="start-simulado-btn" class="btn primary-btn" style="flex: 1;"><i
-                            class="fa-solid fa-play"></i> Iniciar Prova Oficial (50Q)</button>
-
-                    <!-- Botão para abrir o PDF completo das 16 páginas -->
-                    <a href="guarda.pdf" target="_blank" class="btn secondary-btn"
-                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-                        <i class="fa-solid fa-file-pdf"></i> Abrir PDF Completo (16 Pág)
-                    </a>
-                </div>
+                <ul
+                    style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+                    <li><strong>Natureza:</strong> Instituição civil, uniformizada e armada.</li>
+                    <li><strong>Controle:</strong> Interno (Corregedoria) e Externo (Ouvidoria).</li>
+                    <li><strong>Vedações:</strong> Proibida subordinação a comandos militares.</li>
+                </ul>
             </div>
 
-            <!-- Área do Quiz com Leitor de PDF Integrado -->
-            <div id="simulado-quiz-area" class="hidden">
-
-                <!-- Botão de Acesso Direto ao PDF Oficial em Nova Aba -->
-                <div style="margin-bottom: 15px;">
-                    <a href="guarda.pdf" target="_blank" class="btn secondary-btn"
-                        style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-file-pdf"></i> Consultar Prova Oficial (PDF Completo)
-                    </a>
+            <!-- Card 2: Constituição -->
+            <div class="card" style="padding: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                    <span class="badge" style="background-color: #fff3e0; color: #e65100;"><i
+                            class="fa-solid fa-fire"></i> Cai Sempre</span>
+                    <small style="color: var(--text-muted);">CF/88 Art. 144</small>
                 </div>
-
-                <!-- Container do PDF Integrado (Inicialmente Oculto) -->
-                <div id="pdf-viewer-container" class="card hidden"
-                    style="margin-bottom: 20px; border: 2px solid #3182ce; padding: 10px;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
-                        <span style="font-weight: bold; color: #1e293b;"><i class="fa-solid fa-book-open"></i> Caderno
-                            de Questões Oficial - COSEAC 2019</span>
-                        <button id="close-pdf-btn" class="btn danger-btn"
-                            style="padding: 5px 12px; font-size: 0.85rem;">
-                            <i class="fa-solid fa-xmark"></i> Fechar PDF
-                        </button>
-                    </div>
-                    <iframe src="guarda.pdf"
-                        style="width: 100%; height: 450px; border: none; border-radius: 6px;"></iframe>
-                </div>
-
-                <div class="quiz-layout">
-                    <div class="question-card card">
-                        <div class="q-meta">
-                            <span id="q-subject-badge" class="badge">Disciplina</span>
-                            <span id="q-number">Questão 1 de 50</span>
-                        </div>
-                        <h3 id="q-text">Enunciado da questão aparecerá aqui...</h3>
-                        <div id="options-container" class="options-list">
-                            <!-- Opções geradas via JS -->
-                        </div>
-                        <div class="quiz-nav-buttons">
-                            <button id="prev-q-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
-                                Anterior</button>
-                            <button id="next-q-btn" class="btn primary-btn">Próxima <i
-                                    class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="quiz-sidebar card">
-                        <h4>Gabarito de Questões</h4>
-                        <div id="question-grid" class="q-grid">
-                            <!-- Grade de 1 a 50 gerada via JS -->
-                        </div>
-                        <button id="finish-simulado-btn" class="btn danger-btn"><i
-                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
-                    </div>
-                </div>
+                <h3><i class="fa-solid fa-landmark" style="color: #e65100;"></i> Artigo 144 - Segurança Pública</h3>
+                <p style="margin: 0.8rem 0; font-size: 0.95rem;">
+                    <strong>Artigo Chave (§ 8º):</strong> Os Municípios poderão constituir guardas municipais para
+                    proteção de seus <em>bens, serviços e instalações</em>.
+                </p>
+                <ul
+                    style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+                    <li><strong>Inviolabilidade do Domicílio:</strong> Flagrante, desastre, socorro ou ordem
+                        judicial (dia).</li>
+                    <li><strong>Remédios:</strong> Habeas Corpus (Locomoção) e Habeas Data (Informação pessoal).
+                    </li>
+                </ul>
             </div>
 
-            <div id="simulado-result-area" class="hidden card text-center">
-                <h2>Resultado do Simulado</h2>
-                <div id="score-display" class="score-badge">0 / 50</div>
-                <p id="score-feedback">Parabéns por concluir!</p>
-                <button id="restart-simulado-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i>
-                    Refazer Simulado</button>
-            </div>
-        </section>
-
-        <!-- Seção: Flashcards -->
-        <section id="flashcards-section" class="content-section">
-            <h2>Flashcards de Memorização Ativa</h2>
-            <div class="flashcard-container">
-                <div id="flashcard" class="flashcard card">
-                    <div class="flashcard-inner">
-                        <div class="flashcard-front">
-                            <span id="fc-category" class="badge">Estatuto das Guardas</span>
-                            <h3 id="fc-question">Qual é o princípio mínimo de atuação da Guarda Municipal conforme a Lei
-                                13.022/14?</h3>
-                            <span class="flip-hint"><i class="fa-solid fa-rotate"></i> Clique para virar o cartão</span>
-                        </div>
-                        <div class="flashcard-back">
-                            <h3>Resposta:</h3>
-                            <p id="fc-answer">I - Proteção dos direitos humanos fundamentais... II - Preservação da
-                                vida, redução do sofrimento e diminuição das perdas...</p>
-                        </div>
-                    </div>
+            <!-- Card 3: Penal & CTB -->
+            <div class="card" style="padding: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                    <span class="badge" style="background-color: #e8f5e9; color: #2e7d32;"><i
+                            class="fa-solid fa-gavel"></i> Bizu Prático</span>
+                    <small style="color: var(--text-muted);">CP & CTB</small>
                 </div>
-                <div class="flashcard-controls">
-                    <button id="fc-prev" class="btn secondary-btn"><i class="fa-solid fa-chevron-left"></i>
-                        Anterior</button>
-                    <button id="fc-flip" class="btn primary-btn"><i class="fa-solid fa-repeat"></i> Virar
-                        Cartão</button>
-                    <button id="fc-next" class="btn secondary-btn">Próximo <i
-                            class="fa-solid fa-chevron-right"></i></button>
-                </div>
+                <h3><i class="fa-solid fa-handcuffs" style="color: #2e7d32;"></i> Direito Penal & Trânsito</h3>
+                <p style="margin: 0.8rem 0; font-size: 0.95rem;">
+                    Diferencie os crimes funcionais mais cobrados em provas da Guarda:
+                </p>
+                <ul
+                    style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+                    <li><strong>Concussão (Art. 316):</strong> <em>EXIGIR</em> vantagem indevida.</li>
+                    <li><strong>Corrupção Passiva (Art. 317):</strong> <em>SOLICITAR</em> ou <em>RECEBER</em>
+                        vantagem.</li>
+                    <li><strong>Prevaricação (Art. 319):</strong> Retardar/deixar de agir por <em>INTERESSE
+                            PESSOAL</em>.</li>
+                    <li><strong>CTB Art. 304:</strong> Omissão de socorro no trânsito (Crime).</li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Seção: Resumos Teóricos & Bizus -->
-        <section id="resumos-section" class="content-section">
-            <h2>Resumos Teóricos & Bizus Estratégicos (COSEAC)</h2>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Pontos de atenção e macetes de memorização
-                focados no edital da Guarda Municipal de Maricá:</p>
+    <!-- Seção: Estatísticas / Desempenho -->
+    <section id="stats-section" class="content-section">
+        <h2>Seu Progresso e Estatísticas</h2>
+        <div class="stats-grid">
+            <div class="card stat-card">
+                <h3>Simulados Realizados</h3>
+                <p id="stat-total-simulados" class="stat-number">0</p>
+            </div>
+            <div class="card stat-card">
+                <h3>Média de Acertos</h3>
+                <p id="stat-media-acertos" class="stat-number">0%</p>
+            </div>
+            <div class="card stat-card">
+                <h3>Flashcards Vistos</h3>
+                <p id="stat-flashcards" class="stat-number">0</p>
+            </div>
+        </div>
 
+        <!-- Botão para Zerar Estatísticas -->
+        <div class="text-center" style="margin-top: 2rem;">
+            <button id="reset-stats-btn" class="btn danger-btn">
+                <i class="fa-solid fa-trash"></i> Zerar Estatísticas
+            </button>
+        </div>
+    </section>
+
+    <!-- Seção: Super Simulado por Matéria -->
+    <section id="super-simulado-section" class="content-section">
+        <h2>Super Simulado por Matéria</h2>
+        <div id="super-menu" class="card text-center">
+            <p>Escolha a disciplina desejada para iniciar o treino focado:</p>
             <div class="materias-grid">
-                <!-- Card 1: Estatuto -->
-                <div class="card" style="padding: 1.5rem;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                        <span class="badge" style="background-color: #e3f2fd; color: #1565c0;"><i
-                                class="fa-solid fa-star"></i> Alto Rendimento</span>
-                        <small style="color: var(--text-muted);">Lei 13.022/14</small>
+                <button class="btn primary-btn materia-filter-btn" data-materia="Constitucional">Direito
+                    Constitucional</button>
+                <button class="btn primary-btn materia-filter-btn" data-materia="Administrativo">Direito
+                    Administrativo</button>
+                <button class="btn primary-btn materia-filter-btn" data-materia="LegislacaoGCM">Legislação da Guarda
+                    Municipal</button>
+                <button class="btn primary-btn materia-filter-btn" data-materia="PenalEspecial">Direito Penal,
+                    Processual Penal e Especial</button>
+                <button class="btn primary-btn materia-filter-btn" data-materia="DireitosHumanos">Direitos Humanos e
+                    Legislação Social</button>
+                <button class="btn secondary-btn materia-filter-btn" data-materia="Todas">Simulado Geral (Todas as
+                    Matérias)</button>
+                <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas
+                    Anteriores</button>
+            </div>
+        </div>
+
+        <div id="super-quiz-area" class="hidden">
+            <div class="simulado-top-bar">
+                <h3 id="super-titulo-materia">Filtro Ativo</h3>
+                <button id="voltar-menu-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                    Escolher Outra Matéria</button>
+            </div>
+            <div class="quiz-layout">
+                <div class="question-card card">
+                    <div class="q-meta">
+                        <span id="super-q-subject" class="badge">Disciplina</span>
+                        <span id="super-q-number">Questão 1</span>
                     </div>
-                    <h3><i class="fa-solid fa-scale-balanced" style="color: #1565c0;"></i> Estatuto das Guardas</h3>
-                    <p style="margin: 0.8rem 0; font-size: 0.95rem;">
-                        <strong>Artigo Chave (Art. 3º):</strong> Princípios Mínimos (Proteção dos Direitos Humanos,
-                        Preservação da vida, Uso progressivo da força).
-                    </p>
-                    <ul
-                        style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
-                        <li><strong>Natureza:</strong> Instituição civil, uniformizada e armada.</li>
-                        <li><strong>Controle:</strong> Interno (Corregedoria) e Externo (Ouvidoria).</li>
-                        <li><strong>Vedações:</strong> Proibida subordinação a comandos militares.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 2: Constituição -->
-                <div class="card" style="padding: 1.5rem;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                        <span class="badge" style="background-color: #fff3e0; color: #e65100;"><i
-                                class="fa-solid fa-fire"></i> Cai Sempre</span>
-                        <small style="color: var(--text-muted);">CF/88 Art. 144</small>
+                    <h3 id="super-q-text">Enunciado...</h3>
+                    <div id="super-options-container" class="options-list"></div>
+                    <div class="quiz-nav-buttons">
+                        <button id="super-prev-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                            Anterior</button>
+                        <button id="super-next-btn" class="btn primary-btn">Próxima <i
+                                class="fa-solid fa-arrow-right"></i></button>
                     </div>
-                    <h3><i class="fa-solid fa-landmark" style="color: #e65100;"></i> Artigo 144 - Segurança Pública</h3>
-                    <p style="margin: 0.8rem 0; font-size: 0.95rem;">
-                        <strong>Artigo Chave (§ 8º):</strong> Os Municípios poderão constituir guardas municipais para
-                        proteção de seus <em>bens, serviços e instalações</em>.
-                    </p>
-                    <ul
-                        style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
-                        <li><strong>Inviolabilidade do Domicílio:</strong> Flagrante, desastre, socorro ou ordem
-                            judicial (dia).</li>
-                        <li><strong>Remédios:</strong> Habeas Corpus (Locomoção) e Habeas Data (Informação pessoal).
-                        </li>
-                    </ul>
                 </div>
+                <div class="quiz-sidebar card">
+                    <h4>Questões da Matéria</h4>
+                    <div id="super-question-grid" class="q-grid"></div>
+                    <button id="super-finish-btn" class="btn danger-btn"><i class="fa-solid fa-flag-checkered"></i>
+                        Finalizar Bloco</button>
+                </div>
+            </div>
+        </div>
 
-                <!-- Card 3: Penal & CTB -->
-                <div class="card" style="padding: 1.5rem;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                        <span class="badge" style="background-color: #e8f5e9; color: #2e7d32;"><i
-                                class="fa-solid fa-gavel"></i> Bizu Prático</span>
-                        <small style="color: var(--text-muted);">CP & CTB</small>
+        <div id="super-result-area" class="hidden card text-center">
+            <h2>Resultado do Bloco</h2>
+            <div id="super-score-display" class="score-badge">0 / 0</div>
+            <p id="super-score-feedback">Bom trabalho!</p>
+            <button id="super-restart-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Escolher
+                Outra Matéria</button>
+        </div>
+    </section>
+
+    <!-- Seção: Provas Anteriores, Gabaritos e Leis -->
+    <section id="provas-section" class="content-section">
+        <h2>Provas Anteriores, Gabaritos e Documentação</h2>
+        <p>Acesse as provas anteriores, gabaritos oficiais e a documentação de apoio para o seu estudo prático:</p>
+
+        <div class="materias-grid" style="margin-top: 1.5rem;">
+            <!-- Card Prova -->
+            <div class="card text-center" style="padding: 1.5rem;">
+                <i class="fa-solid fa-file-pdf" style="font-size: 2.5rem; color: #d32f2f; margin-bottom: 0.8rem;"></i>
+                <h3>Caderno de Prova (2020)</h3>
+                <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                    Prova oficial da Guarda Municipal de São Gonçalo aplicada pela banca SELECON com 80 questões
+                    objetivas.
+                </p>
+                <a href="guarda_municipal.pdf" target="_blank" class="btn primary-btn"
+                    style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
+                    <i class="fa-solid fa-eye"></i> Abrir Prova em PDF
+                </a>
+            </div>
+
+            <!-- Card Gabarito -->
+            <div class="card text-center" style="padding: 1.5rem;">
+                <i class="fa-solid fa-file-circle-check"
+                    style="font-size: 2.5rem; color: #2e7d32; margin-bottom: 0.8rem;"></i>
+                <h3>Gabarito Oficial (2020)</h3>
+                <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                    Gabarito oficial de respostas da prova da SELECON para conferência.
+                </p>
+                <a href="gabarito_oficial.pdf" target="_blank" class="btn primary-btn"
+                    style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
+                    <i class="fa-solid fa-square-check"></i> Abrir Gabarito em PDF
+                </a>
+            </div>
+
+            <!-- Card Estatuto dos Servidores (Lei 050/1991) -->
+            <div class="card text-center" style="padding: 1.5rem;">
+                <i class="fa-solid fa-book-bookmark"
+                    style="font-size: 2.5rem; color: #3182ce; margin-bottom: 0.8rem;"></i>
+                <h3>Estatuto de São Gonçalo (Lei 050/91)</h3>
+                <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
+                    Estatuto dos Servidores Públicos do Município de São Gonçalo para consulta detalhada.
+                </p>
+                <a href="lei-050.pdf" target="_blank" class="btn primary-btn"
+                    style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
+                    <i class="fa-solid fa-file-pdf"></i> Abrir Lei em PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção: Simulado RLM -->
+    <section id="rlm-section" class="content-section">
+        <div class="simulado-top-bar">
+            <h2>Simulado Raciocínio Lógico (50Q) - COSEAC</h2>
+            <div id="rlm-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 03:00:00</div>
+        </div>
+
+        <div id="rlm-intro" class="card">
+            <p>Simulado exclusivo de <strong>Raciocínio Lógico</strong> focado no edital COSEAC/UFF para Guarda
+                Municipal. Teste seu conhecimento em sequências, conjuntos, proporções e probabilidades.</p>
+            <button id="start-rlm-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                RLM</button>
+        </div>
+
+        <!-- Área do Quiz de RLM (Oculta inicialmente) -->
+        <div id="rlm-quiz-area" class="hidden">
+            <div class="quiz-layout">
+                <div class="question-card card">
+                    <div class="q-meta">
+                        <span id="rlm-subject-badge" class="badge">Raciocínio Lógico</span>
+                        <span id="rlm-q-number">Questão 1 de 20</span>
                     </div>
-                    <h3><i class="fa-solid fa-handcuffs" style="color: #2e7d32;"></i> Direito Penal & Trânsito</h3>
-                    <p style="margin: 0.8rem 0; font-size: 0.95rem;">
-                        Diferencie os crimes funcionais mais cobrados em provas da Guarda:
-                    </p>
-                    <ul
-                        style="text-align: left; margin: 1rem 0; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
-                        <li><strong>Concussão (Art. 316):</strong> <em>EXIGIR</em> vantagem indevida.</li>
-                        <li><strong>Corrupção Passiva (Art. 317):</strong> <em>SOLICITAR</em> ou <em>RECEBER</em>
-                            vantagem.</li>
-                        <li><strong>Prevaricação (Art. 319):</strong> Retardar/deixar de agir por <em>INTERESSE
-                                PESSOAL</em>.</li>
-                        <li><strong>CTB Art. 304:</strong> Omissão de socorro no trânsito (Crime).</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção: Estatísticas / Desempenho -->
-        <section id="stats-section" class="content-section">
-            <h2>Seu Progresso e Estatísticas</h2>
-            <div class="stats-grid">
-                <div class="card stat-card">
-                    <h3>Simulados Realizados</h3>
-                    <p id="stat-total-simulados" class="stat-number">0</p>
-                </div>
-                <div class="card stat-card">
-                    <h3>Média de Acertos</h3>
-                    <p id="stat-media-acertos" class="stat-number">0%</p>
-                </div>
-                <div class="card stat-card">
-                    <h3>Flashcards Vistos</h3>
-                    <p id="stat-flashcards" class="stat-number">0</p>
-                </div>
-            </div>
-
-            <!-- Botão para Zerar Estatísticas -->
-            <div class="text-center" style="margin-top: 2rem;">
-                <button id="reset-stats-btn" class="btn danger-btn">
-                    <i class="fa-solid fa-trash"></i> Zerar Estatísticas
-                </button>
-            </div>
-        </section>
-
-        <!-- Seção: Super Simulado por Matéria -->
-        <section id="super-simulado-section" class="content-section">
-            <h2>Super Simulado por Matéria</h2>
-            <div id="super-menu" class="card text-center">
-                <p>Escolha a disciplina desejada para iniciar o treino focado:</p>
-                <div class="materias-grid">
-                    <button class="btn primary-btn materia-filter-btn" data-materia="Constitucional">Direito
-                        Constitucional</button>
-                    <button class="btn primary-btn materia-filter-btn" data-materia="Administrativo">Direito
-                        Administrativo</button>
-                    <button class="btn primary-btn materia-filter-btn" data-materia="LegislacaoGCM">Legislação da Guarda
-                        Municipal</button>
-                    <button class="btn primary-btn materia-filter-btn" data-materia="PenalEspecial">Direito Penal,
-                        Processual Penal e Especial</button>
-                    <button class="btn primary-btn materia-filter-btn" data-materia="DireitosHumanos">Direitos Humanos e
-                        Legislação Social</button>
-                    <button class="btn secondary-btn materia-filter-btn" data-materia="Todas">Simulado Geral (Todas as
-                        Matérias)</button>
-                    <button class="tab-btn" data-target="provas-section"><i class="fa-solid fa-file-pdf"></i> Provas
-                        Anteriores</button>
-                </div>
-            </div>
-
-            <div id="super-quiz-area" class="hidden">
-                <div class="simulado-top-bar">
-                    <h3 id="super-titulo-materia">Filtro Ativo</h3>
-                    <button id="voltar-menu-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
-                        Escolher Outra Matéria</button>
-                </div>
-                <div class="quiz-layout">
-                    <div class="question-card card">
-                        <div class="q-meta">
-                            <span id="super-q-subject" class="badge">Disciplina</span>
-                            <span id="super-q-number">Questão 1</span>
-                        </div>
-                        <h3 id="super-q-text">Enunciado...</h3>
-                        <div id="super-options-container" class="options-list"></div>
-                        <div class="quiz-nav-buttons">
-                            <button id="super-prev-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
+                    <h3 id="rlm-q-text">Enunciado da questão aparecerá aqui...</h3>
+                    <div id="rlm-options-container" class="options-list">
+                        <!-- Opções geradas via JS -->
+                    </div>
+                    <div class="quiz-nav-buttons">
+                        <button id="rlm-exit-btn" class="btn danger-btn"><i class="fa-solid fa-right-from-bracket"></i>
+                            Sair</button>
+                        <div>
+                            <button id="rlm-prev-q-btn" class="btn secondary-btn"><i class="fa-solid fa-arrow-left"></i>
                                 Anterior</button>
-                            <button id="super-next-btn" class="btn primary-btn">Próxima <i
+                            <button id="rlm-next-q-btn" class="btn primary-btn">Próxima <i
                                     class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="quiz-sidebar card">
-                        <h4>Questões da Matéria</h4>
-                        <div id="super-question-grid" class="q-grid"></div>
-                        <button id="super-finish-btn" class="btn danger-btn"><i class="fa-solid fa-flag-checkered"></i>
-                            Finalizar Bloco</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="super-result-area" class="hidden card text-center">
-                <h2>Resultado do Bloco</h2>
-                <div id="super-score-display" class="score-badge">0 / 0</div>
-                <p id="super-score-feedback">Bom trabalho!</p>
-                <button id="super-restart-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Escolher
-                    Outra Matéria</button>
-            </div>
-        </section>
-
-        <!-- Seção: Provas Anteriores, Gabaritos e Leis -->
-        <section id="provas-section" class="content-section">
-            <h2>Provas Anteriores, Gabaritos e Leis</h2>
-            <p>Acesse as provas anteriores, gabaritos oficiais e a legislação de apoio para o seu estudo prático:</p>
-
-            <div class="materias-grid" style="margin-top: 1.5rem;">
-                <!-- Card Prova -->
-                <div class="card text-center" style="padding: 1.5rem;">
-                    <i class="fa-solid fa-file-pdf"
-                        style="font-size: 2.5rem; color: #d32f2f; margin-bottom: 0.8rem;"></i>
-                    <h3>Caderno de Prova (2019)</h3>
-                    <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
-                        Prova oficial aplicada pela COSEAC/UFF com 50 questões objetivas[cite: 11].
-                    </p>
-                    <a href="guarda.pdf" target="_blank" class="btn primary-btn"
-                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
-                        <i class="fa-solid fa-eye"></i> Abrir Prova em PDF
-                    </a>
                 </div>
 
-                <!-- Card Gabarito -->
-                <div class="card text-center" style="padding: 1.5rem;">
-                    <i class="fa-solid fa-file-circle-check"
-                        style="font-size: 2.5rem; color: #2e7d32; margin-bottom: 0.8rem;"></i>
-                    <h3>Gabarito Oficial (2019)</h3>
-                    <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
-                        Gabarito oficial preliminar de respostas para conferência[cite: 10].
-                    </p>
-                    <a href="gab_prel.pdf" target="_blank" class="btn primary-btn"
-                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
-                        <i class="fa-solid fa-square-check"></i> Abrir Gabarito em PDF
-                    </a>
-                </div>
-
-                <!-- Card Lei 1416 (Estatuto de São Gonçalo) -->
-                <div class="card text-center" style="padding: 1.5rem;">
-                    <i class="fa-solid fa-book-bookmark"
-                        style="font-size: 2.5rem; color: #3182ce; margin-bottom: 0.8rem;"></i>
-                    <h3>Estatuto de São Gonçalo (Lei 1416)</h3>
-                    <p style="margin: 0.8rem 0; color: var(--text-muted); font-size: 0.9rem;">
-                        Texto legal completo da Lei nº 1416/2022 para leitura e consulta detalhada.
-                    </p>
-                    <a href="lei-1416.pdf" target="_blank" class="btn primary-btn"
-                        style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;">
-                        <i class="fa-solid fa-file-pdf"></i> Abrir Lei em PDF
-                    </a>
+                <div class="quiz-sidebar card">
+                    <h4>Gabarito RLM</h4>
+                    <div id="rlm-question-grid" class="q-grid">
+                        <!-- Grade de questões gerada via JS -->
+                    </div>
+                    <button id="rlm-finish-btn" class="btn danger-btn"><i class="fa-solid fa-flag-checkered"></i>
+                        Finalizar Prova</button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Seção: Simulado RLM -->
-        <section id="rlm-section" class="content-section">
-            <div class="simulado-top-bar">
-                <h2>Simulado Raciocínio Lógico (50Q) - COSEAC</h2>
-                <div id="rlm-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 03:00:00</div>
-            </div>
+        <!-- Área de Resultado do RLM (Oculta inicialmente) -->
+        <div id="rlm-result-area" class="hidden card text-center">
+            <h2>Resultado do Simulado RLM</h2>
+            <div id="rlm-score-display" class="score-badge">0 / 20</div>
+            <p id="rlm-score-feedback">Bom trabalho! Continue praticando para gabaritar a COSEAC.</p>
+            <button id="rlm-restart-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Refazer
+                Simulado RLM</button>
+        </div>
+    </section>
 
-            <div id="rlm-intro" class="card">
-                <p>Simulado exclusivo de <strong>Raciocínio Lógico</strong> focado no edital COSEAC/UFF para Guarda
-                    Municipal. Teste seu conhecimento em sequências, conjuntos, proporções e probabilidades.</p>
-                <button id="start-rlm-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
-                    RLM</button>
-            </div>
+    <!-- Seção: Simulado Informática (100Q) -->
+    <section id="info-section" class="content-section hidden">
+        <div class="simulado-top-bar">
+            <h2>Simulado Informática (100Q) - COSEAC</h2>
+            <div id="info-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 04:00:00</div>
+        </div>
 
-            <!-- Área do Quiz de RLM (Oculta inicialmente) -->
-            <div id="rlm-quiz-area" class="hidden">
-                <div class="quiz-layout">
-                    <div class="question-card card">
-                        <div class="q-meta">
-                            <span id="rlm-subject-badge" class="badge">Raciocínio Lógico</span>
-                            <span id="rlm-q-number">Questão 1 de 20</span>
-                        </div>
-                        <h3 id="rlm-q-text">Enunciado da questão aparecerá aqui...</h3>
-                        <div id="rlm-options-container" class="options-list">
-                            <!-- Opções geradas via JS -->
-                        </div>
-                        <div class="quiz-nav-buttons">
-                            <button id="rlm-exit-btn" class="btn danger-btn"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
-                            <div>
-                                <button id="rlm-prev-q-btn" class="btn secondary-btn"><i
-                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
-                                <button id="rlm-next-q-btn" class="btn primary-btn">Próxima <i
-                                        class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
+        <!-- Introdução de Informática -->
+        <div id="info-intro" class="card text-center">
+            <p>Simulado exclusivo de <strong>Noções de Informática</strong> focado no edital COSEAC/UFF para Guarda
+                Municipal. Teste seu conhecimento com 100 questões abrangendo Windows, Pacote Office, Redes e
+                Segurança da Informação.</p>
+            <button id="start-info-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                Informática</button>
+        </div>
+
+        <!-- Área do Quiz de Informática -->
+        <div id="info-quiz-area" class="hidden">
+            <div class="quiz-layout">
+                <div class="question-card card">
+                    <div class="q-meta">
+                        <span id="info-subject-badge" class="badge">Informática</span>
+                        <span id="info-q-number">Questão 1 de 100</span>
+                    </div>
+                    <h3 id="info-q-text">Enunciado da questão aparecerá aqui...</h3>
+
+                    <div id="info-options-container" class="options-list">
+                        <!-- Opções geradas via JS -->
                     </div>
 
-                    <div class="quiz-sidebar card">
-                        <h4>Gabarito RLM</h4>
-                        <div id="rlm-question-grid" class="q-grid">
-                            <!-- Grade de questões gerada via JS -->
-                        </div>
-                        <button id="rlm-finish-btn" class="btn danger-btn"><i class="fa-solid fa-flag-checkered"></i>
-                            Finalizar Prova</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Área de Resultado do RLM (Oculta inicialmente) -->
-            <div id="rlm-result-area" class="hidden card text-center">
-                <h2>Resultado do Simulado RLM</h2>
-                <div id="rlm-score-display" class="score-badge">0 / 20</div>
-                <p id="rlm-score-feedback">Bom trabalho! Continue praticando para gabaritar a COSEAC.</p>
-                <button id="rlm-restart-btn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Refazer
-                    Simulado RLM</button>
-            </div>
-        </section>
-
-        <!-- Seção: Simulado Informática (100Q) -->
-        <section id="info-section" class="content-section hidden">
-            <div class="simulado-top-bar">
-                <h2>Simulado Informática (100Q) - COSEAC</h2>
-                <div id="info-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 04:00:00</div>
-            </div>
-
-            <!-- Introdução de Informática -->
-            <div id="info-intro" class="card text-center">
-                <p>Simulado exclusivo de <strong>Noções de Informática</strong> focado no edital COSEAC/UFF para Guarda
-                    Municipal. Teste seu conhecimento com 100 questões abrangendo Windows, Pacote Office, Redes e
-                    Segurança da Informação.</p>
-                <button id="start-info-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
-                    Informática</button>
-            </div>
-
-            <!-- Área do Quiz de Informática -->
-            <div id="info-quiz-area" class="hidden">
-                <div class="quiz-layout">
-                    <div class="question-card card">
-                        <div class="q-meta">
-                            <span id="info-subject-badge" class="badge">Informática</span>
-                            <span id="info-q-number">Questão 1 de 100</span>
-                        </div>
-                        <h3 id="info-q-text">Enunciado da questão aparecerá aqui...</h3>
-
-                        <div id="info-options-container" class="options-list">
-                            <!-- Opções geradas via JS -->
-                        </div>
-
-                        <!-- Caixinha de Feedback / Explicação (Adicionada) -->
-                        <div id="info-feedback-box" class="feedback-box hidden">
-                            <div id="info-feedback-status" class="feedback-status"></div>
-                            <div id="info-feedback-text" class="feedback-text"></div>
-                        </div>
-
-                        <div class="quiz-nav-buttons">
-                            <button id="info-exit-btn" class="btn danger-btn"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
-                            <div>
-                                <button id="info-prev-q-btn" class="btn secondary-btn"><i
-                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
-                                <button id="info-next-q-btn" class="btn primary-btn">Próxima <i
-                                        class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
+                    <!-- Caixinha de Feedback / Explicação (Adicionada) -->
+                    <div id="info-feedback-box" class="feedback-box hidden">
+                        <div id="info-feedback-status" class="feedback-status"></div>
+                        <div id="info-feedback-text" class="feedback-text"></div>
                     </div>
 
-                    <!-- Gabarito Lateral de Informática -->
-                    <div class="gabarito-card card">
-                        <h4>Gabarito Informática</h4>
-                        <div id="info-question-grid" class="q-grid">
-                            <!-- Caixas geradas via JS -->
+                    <div class="quiz-nav-buttons">
+                        <button id="info-exit-btn" class="btn danger-btn"><i class="fa-solid fa-right-from-bracket"></i>
+                            Sair</button>
+                        <div>
+                            <button id="info-prev-q-btn" class="btn secondary-btn"><i
+                                    class="fa-solid fa-arrow-left"></i> Anterior</button>
+                            <button id="info-next-q-btn" class="btn primary-btn">Próxima <i
+                                    class="fa-solid fa-arrow-right"></i></button>
                         </div>
-                        <button id="info-finish-btn" class="btn danger-btn full-width"><i
-                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Área de Resultado de Informática -->
-            <div id="info-result-area" class="hidden card text-center">
-                <h3>Resultado do Simulado de Informática</h3>
-                <p>Você concluiu o simulado!</p>
-                <div class="score-display" id="info-score-display">0 / 100</div>
-                <button id="info-restart-btn" class="btn primary-btn">Tentar Novamente</button>
-            </div>
-        </section>
-
-        <!-- Seção: Simulado CTB (50Q) -->
-        <section id="ctb-section" class="content-section hidden">
-            <div class="simulado-top-bar">
-                <h2>Simulado CTB (50 Questões) - Trânsito</h2>
-                <div id="ctb-timer-top" class="timer-badge"><i class="fa-solid fa-clock"></i> 02:00:00</div>
-            </div>
-
-            <!-- Introdução CTB -->
-            <div id="ctb-intro" class="card text-center">
-                <p>Questões focadas na Legislação de Trânsito (Código de Trânsito Brasileiro - CTB) para a Guarda
-                    Municipal de Maricá.</p>
-                <button id="start-ctb-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
-                    CTB</button>
-            </div>
-
-            <!-- Área do Quiz CTB -->
-            <div id="ctb-quiz-area" class="hidden">
-                <div class="quiz-layout">
-                    <div class="question-card card">
-                        <div class="q-meta">
-                            <span id="ctb-subject-badge" class="badge">Legislação de Trânsito</span>
-                            <span id="ctb-q-number">Questão 1 de 50</span>
-                        </div>
-                        <h3 id="ctb-q-text">Enunciado da questão aparecerá aqui...</h3>
-
-                        <div id="ctb-options-container" class="options-list">
-                            <!-- Opções geradas via JS -->
-                        </div>
-
-                        <!-- Caixinha de Feedback / Explicação do CTB (Posicionada corretamente DENTRO do cartão) -->
-                        <div id="ctb-feedback-box" class="feedback-box hidden">
-                            <div id="ctb-feedback-status" class="feedback-status"></div>
-                            <div id="ctb-feedback-text" class="feedback-text"></div>
-                        </div>
-
-                        <div class="quiz-nav-buttons">
-                            <button id="ctb-exit-btn" class="btn danger-btn"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
-                            <div>
-                                <button id="ctb-prev-q-btn" class="btn secondary-btn" disabled><i
-                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
-                                <button id="ctb-next-q-btn" class="btn primary-btn">Próxima <i
-                                        class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
+                <!-- Gabarito Lateral de Informática -->
+                <div class="gabarito-card card">
+                    <h4>Gabarito Informática</h4>
+                    <div id="info-question-grid" class="q-grid">
+                        <!-- Caixas geradas via JS -->
                     </div>
-
-                    <!-- Gabarito Lateral CTB -->
-                    <div class="gabarito-card card">
-                        <h4>Gabarito CTB</h4>
-                        <div id="ctb-question-grid" class="q-grid">
-                            <!-- Grade gerada via JS -->
-                        </div>
-                        <button id="ctb-finish-btn" class="btn danger-btn full-width"><i
-                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
-                    </div>
+                    <button id="info-finish-btn" class="btn danger-btn full-width"><i
+                            class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
                 </div>
             </div>
+        </div>
 
-            <!-- Área de Resultado CTB -->
-            <div id="ctb-result-area" class="hidden card text-center">
-                <h3>Resultado do Simulado CTB</h3>
-                <p>Você concluiu o simulado!</p>
-                <div class="score-display" id="ctb-score-display">0 / 50</div>
-                <button id="ctb-restart-btn" class="btn primary-btn">Tentar Novamente</button>
-            </div>
-        </section>
+        <!-- Área de Resultado de Informática -->
+        <div id="info-result-area" class="hidden card text-center">
+            <h3>Resultado do Simulado de Informática</h3>
+            <p>Você concluiu o simulado!</p>
+            <div class="score-display" id="info-score-display">0 / 100</div>
+            <button id="info-restart-btn" class="btn primary-btn">Tentar Novamente</button>
+        </div>
+    </section>
 
-        <!-- Seção: Simulado Lei 1416 (50Q) - Estatuto de São Gonçalo -->
-        <section id="lei1416-section" class="content-section hidden">
-            <div class="simulado-top-bar">
-                <h2>Simulado Lei 1416/2022 (50 Questões) - Estatuto dos Servidores de São Gonçalo</h2>
-                <div id="lei1416-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 02:00:00</div>
-            </div>
+    <!-- Seção: Simulado CTB (50Q) -->
+    <section id="ctb-section" class="content-section hidden">
+        <div class="simulado-top-bar">
+            <h2>Simulado CTB (50 Questões) - Trânsito</h2>
+            <div id="ctb-timer-top" class="timer-badge"><i class="fa-solid fa-clock"></i> 02:00:00</div>
+        </div>
 
-            <!-- Introdução Lei 1416 -->
-            <div id="lei1416-intro" class="card text-center">
-                <p>Questões focadas no <strong>Estatuto dos Servidores Públicos do Município de São Gonçalo</strong>
-                    (Lei nº 1416/2022) para os concursos da Guarda Civil Municipal.</p>
-                <button id="start-lei1416-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
-                    Lei 1416</button>
-            </div>
+        <!-- Introdução CTB -->
+        <div id="ctb-intro" class="card text-center">
+            <p>Questões focadas na Legislação de Trânsito (Código de Trânsito Brasileiro - CTB) para a Guarda
+                Municipal de Maricá.</p>
+            <button id="start-ctb-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                CTB</button>
+        </div>
 
-            <!-- Área do Quiz Lei 1416 -->
-            <div id="lei1416-quiz-area" class="hidden">
-                <div class="quiz-layout">
-                    <div class="question-card card">
-                        <div class="q-meta">
-                            <span id="lei1416-subject-badge" class="badge">Estatuto de São Gonçalo</span>
-                            <span id="lei1416-q-number">Questão 1 de 50</span>
-                        </div>
-                        <h3 id="lei1416-q-text">Enunciado da questão aparecerá aqui...</h3>
+        <!-- Área do Quiz CTB -->
+        <div id="ctb-quiz-area" class="hidden">
+            <div class="quiz-layout">
+                <div class="question-card card">
+                    <div class="q-meta">
+                        <span id="ctb-subject-badge" class="badge">Legislação de Trânsito</span>
+                        <span id="ctb-q-number">Questão 1 de 50</span>
+                    </div>
+                    <h3 id="ctb-q-text">Enunciado da questão aparecerá aqui...</h3>
 
-                        <div id="lei1416-options-container" class="options-list">
-                            <!-- Opções geradas via JS -->
-                        </div>
-
-                        <!-- Caixinha de Feedback / Explicação -->
-                        <div id="lei1416-feedback-box" class="feedback-box hidden">
-                            <div id="lei1416-feedback-status" class="feedback-status"></div>
-                            <div id="lei1416-feedback-text" class="feedback-text"></div>
-                        </div>
-
-                        <div class="quiz-nav-buttons">
-                            <button id="lei1416-exit-btn" class="btn danger-btn"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
-                            <div>
-                                <button id="lei1416-prev-q-btn" class="btn secondary-btn"><i
-                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
-                                <button id="lei1416-next-q-btn" class="btn primary-btn">Próxima <i
-                                        class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
+                    <div id="ctb-options-container" class="options-list">
+                        <!-- Opções geradas via JS -->
                     </div>
 
-                    <!-- Gabarito Lateral Lei 1416 -->
-                    <div class="gabarito-card card">
-                        <h4>Gabarito Lei 1416</h4>
-                        <div id="lei1416-question-grid" class="q-grid">
-                            <!-- Caixas geradas via JS -->
-                        </div>
-                        <button id="lei1416-finish-btn" class="btn danger-btn full-width"><i
-                                class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Área de Resultado Lei 1416 -->
-            <div id="lei1416-result-area" class="hidden card text-center">
-                <h3>Resultado do Simulado Lei 1416</h3>
-                <p>Você concluiu o simulado!</p>
-                <div class="score-display" id="lei1416-score-display">0 / 50</div>
-                <button id="lei1416-restart-btn" class="btn primary-btn">Tentar Novamente</button>
-            </div>
-        </section>
-
-        <!-- ========================================== -->
-        <!-- SECÇÃO: SIMULADO LEGISLAÇÃO ESPECÍFICA (200Q) -->
-        <!-- ========================================== -->
-        <section id="especificas-section" class="content-section hidden">
-            <div class="simulado-header">
-                <h2>Simulado Legislação Específica (200Q) - Guarda Municipal</h2>
-                <div id="especificas-timer" class="timer-box"><i class="fa-solid fa-clock"></i> 01:00:00</div>
-            </div>
-
-            <!-- Ecrã Inicial / Introdução com Escolha de Tópicos Completa -->
-            <div id="especificas-intro" class="intro-card card">
-                <h3>Escolha o Tópico de Estudo - Edital Guarda de São Gonçalo</h3>
-                <p>Selecione abaixo qual o bloco de matérias do edital deseja treinar neste simulado:</p>
-
-                <div class="topic-selection-buttons"
-                    style="display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0;">
-                    <button class="btn topic-btn" data-topic="all"
-                        style="background-color: #3182ce; color: white; text-align: left; padding: 1rem; border-radius: 8px; border: none; cursor: pointer; font-weight: 600;">
-                        <i class="fa-solid fa-layer-group"></i> Simulado Geral (Todas as Matérias do Edital)
-                    </button>
-                    <button class="btn topic-btn" data-topic="legislacao-guarda"
-                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
-                        <i class="fa-solid fa-shield-halved"></i> 1. Legislação da Guarda Municipal (Leis 13.022, 13.675
-                        e Estatutos)
-                    </button>
-                    <button class="btn topic-btn" data-topic="extravagante"
-                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
-                        <i class="fa-solid fa-scale-balanced"></i> 2. Legislação Penal Extravagante (Abuso, Hediondos,
-                        Tortura, ECA, etc.)
-                    </button>
-                    <button class="btn topic-btn" data-topic="constitucional-administrativo"
-                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
-                        <i class="fa-solid fa-landmark"></i> 3. Direito Constitucional & Administrativo (CF/88 e LIA)
-                    </button>
-                    <button class="btn topic-btn" data-topic="penal-processual"
-                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
-                        <i class="fa-solid fa-gavel"></i> 4. Direito Penal & Processual Penal (CP e Lei nº 9.099/95)
-                    </button>
-                    <button class="btn topic-btn" data-topic="estatutos-municipais"
-                        style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
-                        <i class="fa-solid fa-book-bookmark"></i> 5. Leis Municipais de São Gonçalo (Estatutos e Regime
-                        Próprio)
-                    </button>
-                </div>
-            </div>
-
-            <!-- Área da Prova / Quiz -->
-            <div id="especificas-quiz-area" class="quiz-container hidden">
-                <div class="quiz-layout">
-                    <div class="question-card card">
-                        <div class="question-header">
-                            <span id="especificas-q-tag" class="badge">Legislação Específica</span>
-                            <span id="especificas-q-number">Questão 1 de 200</span>
-                        </div>
-                        <h3 id="especificas-q-text">Enunciado da questão aparecerá aqui...</h3>
-
-                        <div id="especificas-options-container" class="options-list">
-                            <!-- Opções geradas via JS -->
-                        </div>
-
-                        <!-- Caixinha de Feedback / Explicação -->
-                        <div id="especificas-feedback-box" class="feedback-box hidden">
-                            <div id="especificas-feedback-status" class="feedback-status"></div>
-                            <div id="especificas-feedback-text" class="feedback-text"></div>
-                        </div>
-
-                        <div class="quiz-nav-buttons">
-                            <button id="especificas-exit-btn" class="btn danger-btn"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Sair</button>
-                            <div>
-                                <button id="especificas-prev-q-btn" class="btn secondary-btn"><i
-                                        class="fa-solid fa-arrow-left"></i> Anterior</button>
-                                <button id="especificas-next-q-btn" class="btn primary-btn">Próxima <i
-                                        class="fa-solid fa-arrow-right"></i></button>
-                            </div>
-                        </div>
+                    <!-- Caixinha de Feedback / Explicação do CTB (Posicionada corretamente DENTRO do cartão) -->
+                    <div id="ctb-feedback-box" class="feedback-box hidden">
+                        <div id="ctb-feedback-status" class="feedback-status"></div>
+                        <div id="ctb-feedback-text" class="feedback-text"></div>
                     </div>
 
-                    <!-- Gabarito Lateral -->
-                    <div class="gabarito-card card">
-                        <h4>Gabarito</h4>
-
-                        <!-- Container com scroll apenas para o gabarito -->
-                        <div id="especificas-gabarito-list">
-                            <div id="especificas-question-grid" class="question-grid">
-                                <!-- Grid gerado via JS -->
-                            </div>
+                    <div class="quiz-nav-buttons">
+                        <button id="ctb-exit-btn" class="btn danger-btn"><i class="fa-solid fa-right-from-bracket"></i>
+                            Sair</button>
+                        <div>
+                            <button id="ctb-prev-q-btn" class="btn secondary-btn" disabled><i
+                                    class="fa-solid fa-arrow-left"></i> Anterior</button>
+                            <button id="ctb-next-q-btn" class="btn primary-btn">Próxima <i
+                                    class="fa-solid fa-arrow-right"></i></button>
                         </div>
-
-                        <button id="especificas-finish-btn" class="btn danger-btn btn-block">
-                            <i class="fa-solid fa-flag-checkered"></i> Finalizar Prova
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Ecrã de Resultado -->
-            <div id="especificas-result-area" class="result-card card hidden">
-                <h3>Resultado do Simulado</h3>
-                <div class="score-display-box">
-                    <span id="especificas-score-display">0 / 200</span>
+                <!-- Gabarito Lateral CTB -->
+                <div class="gabarito-card card">
+                    <h4>Gabarito CTB</h4>
+                    <div id="ctb-question-grid" class="q-grid">
+                        <!-- Grade gerada via JS -->
+                    </div>
+                    <button id="ctb-finish-btn" class="btn danger-btn full-width"><i
+                            class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
                 </div>
-                <p>Parabéns por concluir o treino de Legislação Específica!</p>
-                <button id="especificas-restart-btn" class="btn primary-btn">
-                    <i class="fa-solid fa-rotate-right"></i> Tentar Novamente
+            </div>
+        </div>
+
+        <!-- Área de Resultado CTB -->
+        <div id="ctb-result-area" class="hidden card text-center">
+            <h3>Resultado do Simulado CTB</h3>
+            <p>Você concluiu o simulado!</p>
+            <div class="score-display" id="ctb-score-display">0 / 50</div>
+            <button id="ctb-restart-btn" class="btn primary-btn">Tentar Novamente</button>
+        </div>
+    </section>
+
+    <!-- Seção: Simulado Lei 1416 (50Q) - Estatuto de São Gonçalo -->
+    <section id="lei1416-section" class="content-section hidden">
+        <div class="simulado-top-bar">
+            <h2>Simulado Lei 1416/2022 (50 Questões) - Estatuto dos Servidores de São Gonçalo</h2>
+            <div id="lei1416-timer" class="timer-badge"><i class="fa-solid fa-clock"></i> 02:00:00</div>
+        </div>
+
+        <!-- Introdução Lei 1416 -->
+        <div id="lei1416-intro" class="card text-center">
+            <p>Questões focadas no <strong>Estatuto dos Servidores Públicos do Município de São Gonçalo</strong>
+                (Lei nº 1416/2022) para os concursos da Guarda Civil Municipal.</p>
+            <button id="start-lei1416-btn" class="btn primary-btn"><i class="fa-solid fa-play"></i> Iniciar Simulado
+                Lei 1416</button>
+        </div>
+
+        <!-- Área do Quiz Lei 1416 -->
+        <div id="lei1416-quiz-area" class="hidden">
+            <div class="quiz-layout">
+                <div class="question-card card">
+                    <div class="q-meta">
+                        <span id="lei1416-subject-badge" class="badge">Estatuto de São Gonçalo</span>
+                        <span id="lei1416-q-number">Questão 1 de 50</span>
+                    </div>
+                    <h3 id="lei1416-q-text">Enunciado da questão aparecerá aqui...</h3>
+
+                    <div id="lei1416-options-container" class="options-list">
+                        <!-- Opções geradas via JS -->
+                    </div>
+
+                    <!-- Caixinha de Feedback / Explicação -->
+                    <div id="lei1416-feedback-box" class="feedback-box hidden">
+                        <div id="lei1416-feedback-status" class="feedback-status"></div>
+                        <div id="lei1416-feedback-text" class="feedback-text"></div>
+                    </div>
+
+                    <div class="quiz-nav-buttons">
+                        <button id="lei1416-exit-btn" class="btn danger-btn"><i
+                                class="fa-solid fa-right-from-bracket"></i> Sair</button>
+                        <div>
+                            <button id="lei1416-prev-q-btn" class="btn secondary-btn"><i
+                                    class="fa-solid fa-arrow-left"></i> Anterior</button>
+                            <button id="lei1416-next-q-btn" class="btn primary-btn">Próxima <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gabarito Lateral Lei 1416 -->
+                <div class="gabarito-card card">
+                    <h4>Gabarito Lei 1416</h4>
+                    <div id="lei1416-question-grid" class="q-grid">
+                        <!-- Caixas geradas via JS -->
+                    </div>
+                    <button id="lei1416-finish-btn" class="btn danger-btn full-width"><i
+                            class="fa-solid fa-flag-checkered"></i> Finalizar Prova</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área de Resultado Lei 1416 -->
+        <div id="lei1416-result-area" class="hidden card text-center">
+            <h3>Resultado do Simulado Lei 1416</h3>
+            <p>Você concluiu o simulado!</p>
+            <div class="score-display" id="lei1416-score-display">0 / 50</div>
+            <button id="lei1416-restart-btn" class="btn primary-btn">Tentar Novamente</button>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECÇÃO: SIMULADO LEGISLAÇÃO ESPECÍFICA (200Q) -->
+    <!-- ========================================== -->
+    <section id="especificas-section" class="content-section hidden">
+        <div class="simulado-header">
+            <h2>Simulado Legislação Específica (200Q) - Guarda Municipal</h2>
+            <div id="especificas-timer" class="timer-box"><i class="fa-solid fa-clock"></i> 01:00:00</div>
+        </div>
+
+        <!-- Ecrã Inicial / Introdução com Escolha de Tópicos Completa -->
+        <div id="especificas-intro" class="intro-card card">
+            <h3>Escolha o Tópico de Estudo - Edital Guarda de São Gonçalo</h3>
+            <p>Selecione abaixo qual o bloco de matérias do edital deseja treinar neste simulado:</p>
+
+            <div class="topic-selection-buttons"
+                style="display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0;">
+                <button class="btn topic-btn" data-topic="all"
+                    style="background-color: #3182ce; color: white; text-align: left; padding: 1rem; border-radius: 8px; border: none; cursor: pointer; font-weight: 600;">
+                    <i class="fa-solid fa-layer-group"></i> Simulado Geral (Todas as Matérias do Edital)
+                </button>
+                <button class="btn topic-btn" data-topic="legislacao-guarda"
+                    style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                    <i class="fa-solid fa-shield-halved"></i> 1. Legislação da Guarda Municipal (Leis 13.022, 13.675
+                    e Estatutos)
+                </button>
+                <button class="btn topic-btn" data-topic="extravagante"
+                    style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                    <i class="fa-solid fa-scale-balanced"></i> 2. Legislação Penal Extravagante (Abuso, Hediondos,
+                    Tortura, ECA, etc.)
+                </button>
+                <button class="btn topic-btn" data-topic="constitucional-administrativo"
+                    style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                    <i class="fa-solid fa-landmark"></i> 3. Direito Constitucional & Administrativo (CF/88 e LIA)
+                </button>
+                <button class="btn topic-btn" data-topic="penal-processual"
+                    style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                    <i class="fa-solid fa-gavel"></i> 4. Direito Penal & Processual Penal (CP e Lei nº 9.099/95)
+                </button>
+                <button class="btn topic-btn" data-topic="estatutos-municipais"
+                    style="background-color: #f8fafc; color: #1e293b; text-align: left; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-weight: 600;">
+                    <i class="fa-solid fa-book-bookmark"></i> 5. Leis Municipais de São Gonçalo (Estatutos e Regime
+                    Próprio)
                 </button>
             </div>
-        </section>
+        </div>
+
+        <!-- Área da Prova / Quiz -->
+        <div id="especificas-quiz-area" class="quiz-container hidden">
+            <div class="quiz-layout">
+                <div class="question-card card">
+                    <div class="question-header">
+                        <span id="especificas-q-tag" class="badge">Legislação Específica</span>
+                        <span id="especificas-q-number">Questão 1 de 200</span>
+                    </div>
+                    <h3 id="especificas-q-text">Enunciado da questão aparecerá aqui...</h3>
+
+                    <div id="especificas-options-container" class="options-list">
+                        <!-- Opções geradas via JS -->
+                    </div>
+
+                    <!-- Caixinha de Feedback / Explicação -->
+                    <div id="especificas-feedback-box" class="feedback-box hidden">
+                        <div id="especificas-feedback-status" class="feedback-status"></div>
+                        <div id="especificas-feedback-text" class="feedback-text"></div>
+                    </div>
+
+                    <div class="quiz-nav-buttons">
+                        <button id="especificas-exit-btn" class="btn danger-btn"><i
+                                class="fa-solid fa-right-from-bracket"></i> Sair</button>
+                        <div>
+                            <button id="especificas-prev-q-btn" class="btn secondary-btn"><i
+                                    class="fa-solid fa-arrow-left"></i> Anterior</button>
+                            <button id="especificas-next-q-btn" class="btn primary-btn">Próxima <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gabarito Lateral -->
+                <div class="gabarito-card card">
+                    <h4>Gabarito</h4>
+
+                    <!-- Container com scroll apenas para o gabarito -->
+                    <div id="especificas-gabarito-list">
+                        <div id="especificas-question-grid" class="question-grid">
+                            <!-- Grid gerado via JS -->
+                        </div>
+                    </div>
+
+                    <button id="especificas-finish-btn" class="btn danger-btn btn-block">
+                        <i class="fa-solid fa-flag-checkered"></i> Finalizar Prova
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ecrã de Resultado -->
+        <div id="especificas-result-area" class="result-card card hidden">
+            <h3>Resultado do Simulado</h3>
+            <div class="score-display-box">
+                <span id="especificas-score-display">0 / 200</span>
+            </div>
+            <p>Parabéns por concluir o treino de Legislação Específica!</p>
+            <button id="especificas-restart-btn" class="btn primary-btn">
+                <i class="fa-solid fa-rotate-right"></i> Tentar Novamente
+            </button>
+        </div>
+    </section>
     </main>
 
     <!-- Scripts dos Simulados -->
-    <script src="geral-50q.js"></script>
+    <script src="geral-80q.js"></script>
     <script src="info-100q.js"></script>
     <script src="rlm-50q.js"></script>
     <script src="ctb-50q.js"></script>
